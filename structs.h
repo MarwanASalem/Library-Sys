@@ -65,6 +65,7 @@ void Overduebooks(Borrowing book1);
 void Mostpopular(Borrowing book1);
 char * trim(char *  str);
 int clearinputbufffer();
+extern Member members[];
 
 
 

@@ -37,7 +37,7 @@ void Memberegister()
     FILE *fp;
     for(i=0;i<10000;i++)
     {
-        if(! members[i].firstname )
+        if(! members[i].firstname)
         break;
         else
             n++;
