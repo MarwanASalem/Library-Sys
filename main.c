@@ -20,21 +20,9 @@ Book books[10000];
 Borrowing borrowing[10000];
 int main()
 {
-    int f1=0,f2,fblock; //f1 flag for password verification.
+               int f1=0,f2,fblock; //f1 flag for password verification.
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
-    do {
-            if (f1 != 0)
-                printf("Please re enter the password\n");
-
-            printf("Enter the password you want to set for the admin\n");
-            fgets(password,100,stdin);
-            printf("Re enter the password");
-            fgets(password1,100,stdin);
-            if(strcmp(password,password1)!=0)
-                f1=1;
-    }
-    while(f1!=0);
 
     int i,x=0,y=0,j,f=0,e;//x is the number of members desired to initialize.
     //f is the flag needed for the error handling and
@@ -48,7 +36,7 @@ int main()
             scanf("%d",&e);
         while(e>11);
 
-        switch(e)
+       /* switch(e)
         {
             case 1 :
             {
@@ -77,6 +65,7 @@ int main()
                 }
             case 6 :
                 {
+                    Memberegister();
 
                     break;
                 }
@@ -116,10 +105,27 @@ int main()
                 }
 
         }
-
+*/
     }
     else
         {
+
+    do {
+            if (f1 != 0)
+                printf("Please re enter the password\n");
+
+            printf("Enter the password you want to set for the admin\n");
+            fgets(password,100,stdin);
+            printf("Re enter the password\n");
+            fgets(password1,100,stdin);
+            if(strcmp(password,password1)!=0)
+                f1=1;
+    }
+    while(f1!=0);
+    fp=fopen("password.txt","w");
+    fprintf(fp,"%s",password);
+    fclose(fp);
+
             fp=fopen("members.txt","w");
             printf("Please enter the initial number of members\n");
             scanf("%d",&x);
@@ -151,7 +157,7 @@ int main()
                         fgets(members[i].address.building,25,stdin);
                         trim(members[i].address.building);
 
-                    fprintf(fp,"%s-%s-%d-%d-%s-%s-%s-%s-%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street);
+                    fprintf(fp,"%s,%s%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street);
 
                     fprintf(fp,"\n");
 
@@ -159,7 +165,7 @@ int main()
 
             }
             fclose(fp);
-            fp=fopen("Books.txt","w");
+           /* fp=fopen("Books.txt","w");
            printf("Enter number of Books you want to initialize the library with\n");
             scanf("%d",&y);
             clearinputbufffer();
@@ -179,7 +185,7 @@ int main()
                 scanf("%d",&books[i].copies);
                 fprintf(fp,"%s_%s_%s_%d",books[i].category,books[i].title,books[i].ISBN,books[i].copies);
             }
-           printf("Please restart the program\n");
+*/           printf("Please restart the program\n");
 
        }
     return 0;
