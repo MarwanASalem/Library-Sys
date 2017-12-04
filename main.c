@@ -20,7 +20,7 @@ Book books[10000];
 Borrowing borrowing[10000];
 int main()
 {
-    int f1=0,f2=fblock; //f1 flag for password verification.
+    int f1=0,f2,fblock; //f1 flag for password verification.
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
     do {
@@ -32,9 +32,9 @@ int main()
             printf("Re enter the password");
             fgets(password1,100,stdin);
             if(strcmp(password,password1)!=0)
-                f=1;
+                f1=1;
     }
-    while(f!=0);
+    while(f1!=0);
 
     int i,x=0,y=0,j,f=0,e;//x is the number of members desired to initialize.
     //f is the flag needed for the error handling and
@@ -105,7 +105,7 @@ int main()
                         if (strcmp(password,passwordinput)!= 0)
                             f2=1;
                         }
-                        while (f2!=0 && fblock<5)
+                        while (f2!=0 && fblock<5);
                     break;
                 }
             case 11 :
