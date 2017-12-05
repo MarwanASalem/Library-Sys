@@ -66,7 +66,8 @@ void Mostpopular(Borrowing book1);
 char * trim(char *  str);
 int clearinputbuffer(void);
 extern Member members[];
-
+extern Book books[];
+extern Borrowing borrowing[];
 
 
 #endif /* structs_h */

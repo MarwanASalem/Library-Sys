@@ -31,6 +31,11 @@ void Addcopy(Book book1, int nc)
     a=nc+book1.copies;
     book1.copies = a;
 }
+void Addbook(){
+    int i,n=0;
+    FILE *fp;
+    
+}
 void Memberegister()
 {
     int i,n = 0;
