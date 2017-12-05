@@ -52,12 +52,12 @@ typedef struct{
 }Borrowing;
 
 
-int Comparedate(Date date1, Date date2);
-void Addbook(Book book1);
-void Searchbook(Book book1);
-void Addcopy(Book book1,int nc);
+int Comparedate(Date date1, Date date2);//Done
+void Addbook(Book book1); // marwan
+void Searchbook(Book book1); //attia
+void Addcopy(Book book1,int nc);//done
 void Deletebook(Book book1);
-void Memberegister(void);
+void Memberegister(void);//done
 void Memberborrow(Borrowing book1);
 void Bookreturn(Borrowing book1);
 void Removemember(Member member1);
