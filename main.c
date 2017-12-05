@@ -103,12 +103,31 @@ int main()
                             }
 
                         }
-                        while (f2!=0 && fblock<5);
+                        while (f2!=0);
+                        fclose(fp);
                     break;
                 }
             case 11 :
                 {
-                    printf("Enter the admin password");
+                    do{
+                            fblock++;
+                        printf("Enter the admin password");
+                        clearinputbufffer();
+                        fgets(passwordinput,100,stdin);
+                        fp=fopen("password.txt","r");
+                        fgets(password,100,fp);
+                        if (strcmp(password,passwordinput)!= 0)
+                            f2=1;
+                        else
+                            f2=0;
+                        if (fblock>4)
+                            {
+                                exit(1);
+                            }
+
+                        }
+                        while (f2!=0);
+                        fclose(fp);
 
                     break;
                 }
