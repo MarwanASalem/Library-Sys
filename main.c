@@ -34,7 +34,7 @@ int main()
         printf("Enter Function Index to execute:\n1)  Check Date\n2)  Add Book\n3)  Search For A Book\n4)  Add Copy\n5)  Delete Book\n6)  Member Register\n7)  Member Borrowing\n8)  Returning Book\n9)  Remove Member\n10) Overdue Books\n11) Most Popular Books ");
         do
             scanf("%d",&e);
-        while(e>11 && e<0);
+        while(e>11 || e<0);
 
        /* switch(e)
         {
