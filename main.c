@@ -20,7 +20,7 @@ Book books[10000];
 Borrowing borrowing[10000];
 int main()
 {
-               int f1=0,f2,fblock; //f1 flag for password verification.
+               int f1=0,f2,fblock=0; //f1 flag for password verification.
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
 
@@ -91,8 +91,17 @@ int main()
                         printf("Enter the admin password");
                         clearinputbufffer();
                         fgets(passwordinput,100,stdin);
+                        fp=fopen("password.txt","r");
+                        fgets(password,100,fp);
                         if (strcmp(password,passwordinput)!= 0)
                             f2=1;
+                        else
+                            f2=0;
+                        if (fblock>4)
+                            {
+                                exit(1);
+                            }
+
                         }
                         while (f2!=0 && fblock<5);
                     break;
@@ -112,7 +121,7 @@ int main()
 
     do {
             if (f1 != 0)
-                printf("Please re enter the password\n");
+                printf("Error (does not match) \n");
 
             printf("Enter the password you want to set for the admin\n");
             fgets(password,100,stdin);
@@ -120,6 +129,8 @@ int main()
             fgets(password1,100,stdin);
             if(strcmp(password,password1)!=0)
                 f1=1;
+            else
+                f1=0;
     }
     while(f1!=0);
     fp=fopen("password.txt","w");
