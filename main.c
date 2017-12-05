@@ -27,14 +27,14 @@ int main()
     int i,x=0,y=0,j,f=0,e;//x is the number of members desired to initialize.
     //f is the flag needed for the error handling and
     //y is the number of books desired to initialize
-    // variable to hold the number to the function to execute.
+    //e variable to hold the number to the function to execute.
     FILE * fp;
-    if(fp=fopen("members.txt","r"))// to show the startup menu anytime but the first time.
+    if((fp=fopen("members.txt","r")))// to show the startup menu anytime but the first time.
     {
         printf("Enter Function Index to execute:\n1)  Check Date\n2)  Add Book\n3)  Search For A Book\n4)  Add Copy\n5)  Delete Book\n6)  Member Register\n7)  Member Borrowing\n8)  Returning Book\n9)  Remove Member\n10) Overdue Books\n11) Most Popular Books ");
         do
             scanf("%d",&e);
-        while(e>11);
+        while(e>11 && e<0);
 
        /* switch(e)
         {
@@ -89,7 +89,7 @@ int main()
                     do{
                             fblock++;
                         printf("Enter the admin password");
-                        clearinputbufffer();
+                        clearinputbuffer();
                         fgets(passwordinput,100,stdin);
                         fp=fopen("password.txt","r");
                         fgets(password,100,fp);
@@ -103,31 +103,12 @@ int main()
                             }
 
                         }
-                        while (f2!=0);
-                        fclose(fp);
+                        while (f2!=0 && fblock<5);
                     break;
                 }
             case 11 :
                 {
-                    do{
-                            fblock++;
-                        printf("Enter the admin password");
-                        clearinputbufffer();
-                        fgets(passwordinput,100,stdin);
-                        fp=fopen("password.txt","r");
-                        fgets(password,100,fp);
-                        if (strcmp(password,passwordinput)!= 0)
-                            f2=1;
-                        else
-                            f2=0;
-                        if (fblock>4)
-                            {
-                                exit(1);
-                            }
-
-                        }
-                        while (f2!=0);
-                        fclose(fp);
+                    printf("Enter the admin password");
 
                     break;
                 }
@@ -159,7 +140,7 @@ int main()
             fp=fopen("members.txt","w");
             printf("Please enter the initial number of members\n");
             scanf("%d",&x);
-            clearinputbufffer();
+            clearinputbuffer();
             for(i=0;i<x;i++)
             {
                         printf("Enter First name\n");
@@ -172,7 +153,7 @@ int main()
                         scanf("%d",&members[i].ID);
                         printf("Enter age\n");
                         scanf("%d", &members[i].age);
-                        clearinputbufffer();
+                        clearinputbuffer();
                         printf("Enter phone number\n");
                         fgets(members[i].phonenumber,20,stdin);
                         trim(members[i].phonenumber);
@@ -198,7 +179,7 @@ int main()
            /* fp=fopen("Books.txt","w");
            printf("Enter number of Books you want to initialize the library with\n");
             scanf("%d",&y);
-            clearinputbufffer();
+            clearinputbuffer();
             for(i=0;i<y;i++)
             {
                 printf("Book [%d]",(i+1));

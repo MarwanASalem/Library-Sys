@@ -8,7 +8,7 @@
 
 #include "structs.h"
 
-int Comparedate(Date date1, Date date2 ) // Date 1 is the current date date 2 is he due date
+int Comparedate(Date date1, Date date2 ) // Date 1 is the current date, date 2 is the due date
 {
 
     if(date1.year<date2.year)
@@ -33,7 +33,7 @@ void Addcopy(Book book1, int nc)
 }
 void Memberegister()
 {
-    int i,n;
+    int i,n = 0;
     FILE *fp;
     for(i=0;i<10000;i++)
     {
@@ -52,7 +52,7 @@ void Memberegister()
                         scanf("%d",&members[n+1].ID);
                         printf("Enter age\n");
                         scanf("%d", &members[n+1].age);
-                        clearinputbufffer();
+                        clearinputbuffer();
                         printf("Enter phone number\n");
                         fgets(members[n+1].phonenumber,20,stdin);
                         trim(members[n+1].phonenumber);
@@ -72,7 +72,7 @@ void Memberegister()
 
 
 }
-char * trim(char *  str) //To handle a problem with the buffer in the file.
+ char * trim(char *  str) //To handle a problem with the buffer in the file.
 {
     int n;
     n=strlen(str);
@@ -80,9 +80,9 @@ char * trim(char *  str) //To handle a problem with the buffer in the file.
     return str;
 
 }
-int clearinputbufffer()
+int clearinputbuffer()
 {
     int ch;
     while(((ch = getchar())!= EOF) && (ch != '\n'))
-     return ch;
+        return ch;
 }

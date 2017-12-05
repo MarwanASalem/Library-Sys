@@ -64,7 +64,7 @@ void Removemember(Member member1);
 void Overduebooks(Borrowing book1);
 void Mostpopular(Borrowing book1);
 char * trim(char *  str);
-int clearinputbufffer();
+int clearinputbuffer(void);
 extern Member members[];
 
 
