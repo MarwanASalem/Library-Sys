@@ -54,7 +54,7 @@ typedef struct{
 
 int Comparedate(Date date1, Date date2);//Done
 void Addbook(Book book1); // marwan
-void Searchbook(Book book1); //Done
+Book Searchbook(Book book1); //Done
 void Addcopy(Book book1,int nc);//done
 void Deletebook(Book book1);//Harouni
 void Memberegister(void);//done
