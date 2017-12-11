@@ -34,7 +34,7 @@ void Addcopy(Book book1, int nc)
 void Addbook(){
     int i,n=0;
     FILE *fp;
-    
+
 }
 void Memberegister()
 {
@@ -90,4 +90,32 @@ int clearinputbuffer()
     int ch;
     while(((ch = getchar())!= EOF) && (ch != '\n'))
         return ch;
+}
+void Deletebook(Book book1)
+{
+
+}
+Book Searchbook(Book book1)
+{
+    int f=0,i,n = 0;
+
+    for(i=0;i<10000;i++)
+    {
+
+        if(! books[i].ISBN)
+            break;
+        else
+            n++;
+    }
+    for(i=0;i<n;i++)
+    {
+        if(strcmp(book1.ISBN,books[i].ISBN)==0)
+        {
+            f=1;
+            break;
+        }
+
+
+    }
+    return books[n];
 }

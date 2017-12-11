@@ -54,15 +54,15 @@ typedef struct{
 
 int Comparedate(Date date1, Date date2);//Done
 void Addbook(Book book1); // marwan
-void Searchbook(Book book1); //attia
+void Searchbook(Book book1); //Done
 void Addcopy(Book book1,int nc);//done
-void Deletebook(Book book1);
+void Deletebook(Book book1);//Harouni
 void Memberegister(void);//done
-void Memberborrow(Borrowing book1);
-void Bookreturn(Borrowing book1);
-void Removemember(Member member1);
-void Overduebooks(Borrowing book1);
-void Mostpopular(Borrowing book1);
+void Memberborrow(Borrowing book1);//lesa
+void Bookreturn(Borrowing book1);//lesa
+void Removemember(Member member1);//lesa
+void Overduebooks(Borrowing book1);//lesa
+void Mostpopular(Borrowing book1);//lesa
 char * trim(char *  str);
 int clearinputbuffer(void);
 extern Member members[];
