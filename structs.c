@@ -7,6 +7,10 @@
 //
 
 #include "structs.h"
+#include <time.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 int Comparedate(Date date1, Date date2 ) // Date 1 is the current date, date 2 is the due date
 {
@@ -31,9 +35,38 @@ void Addcopy(Book book1, int nc)
     a=nc+book1.copies;
     book1.copies = a;
 }
-void Addbook(){
+void Addbook()
+{
     int i,n=0;
     FILE *fp;
+    for(i=0;i<10000;i++)
+    {
+        if(! members[i].firstname)
+        break;
+        else
+            n++;
+    }
+    printf("Enter title\n");
+    fgets(books[n+1].title,100,stdin);
+    trim(books[n+1].title);
+    printf("Specify the author");
+    fgets(books[n+1].author,100,stdin);
+    trim(books[n+1].author);
+    printf("Specify the publisher");
+    fgets(books[n+1].publisher,100,stdin);
+    trim(books[n+1].publisher);
+    printf("Enter book ISBN");
+    fgets(books[n+1].ISBN,14,stdin);
+    trim(books[n+1].ISBN);
+    printf("Enter Number of copies");
+    scanf("%d",&books[n+1].copies);
+    clearinputbuffer();
+    printf("Specify Category");
+    fgets(books[n+1].category,50,stdin);
+
+
+
+
 
 }
 void Memberegister()
@@ -47,7 +80,7 @@ void Memberegister()
         else
             n++;
     }
-        printf("Enter First name\n");
+                        printf("Enter First name\n");
                         fgets(members[n+1].firstname,25,stdin);
                         trim(members[n+1].firstname);
                         printf("Enter Last name\n");
@@ -91,13 +124,23 @@ int clearinputbuffer()
     while(((ch = getchar())!= EOF) && (ch != '\n'))
         return ch;
 }
-void Deletebook(Book book1)
+void Deletebook(char * isbn)//INCOMPLETE
 {
+    int ,i;
+    for(i=0;i<10000;i++)
+    {
+        if(strcmp(books[i].ISBN,isbn)==0)
+        {
+            break;
+        }
 
+    }
+    books[i].title= "\0";
+    books[i].ISBN== "\0";
 }
-Book Searchbook(Book book1)
+Book Searchbook(char * isbn)
 {
-    int f=0,i,n = 0;
+    int f=0,i,j,n = 0;
 
     for(i=0;i<10000;i++)
     {
@@ -107,15 +150,14 @@ Book Searchbook(Book book1)
         else
             n++;
     }
-    for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
     {
-        if(strcmp(book1.ISBN,books[i].ISBN)==0)
+        if(strcmp(isbn,books[j].ISBN)==0)
         {
-            f=1;
             break;
         }
 
 
     }
-    return books[n];
+    return books[j];
 }

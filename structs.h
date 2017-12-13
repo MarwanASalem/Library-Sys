@@ -53,10 +53,10 @@ typedef struct{
 
 
 int Comparedate(Date date1, Date date2);//Done
-void Addbook(Book book1); // marwan
-Book Searchbook(Book book1); //Done
-void Addcopy(Book book1,int nc);//done
-void Deletebook(Book book1);//Harouni
+void Addbook(); // Done
+Book Searchbook(char * isbn); //Done
+void Addcopy(Book book1,int nc);//incomplete
+void Deletebook(char * isbn);//Harouni, incomplete
 void Memberegister(void);//done
 void Memberborrow(Borrowing book1);//lesa
 void Bookreturn(Borrowing book1);//lesa
