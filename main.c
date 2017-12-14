@@ -168,7 +168,7 @@ int main()
                         fgets(members[i].address.building,25,stdin);
                         trim(members[i].address.building);
 
-                    fprintf(fp,"%s,%s%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street);
+                    fprintf(fp,"%s,%s,%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street);
 
                     fprintf(fp,"\n");
 
