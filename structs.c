@@ -41,7 +41,7 @@ void Addbook()
     FILE *fp;
     for(i=0;i<10000;i++)
     {
-        if(! members[i].firstname)
+        if(! books[i].ISBN)
         break;
         else
             n++;
@@ -63,8 +63,10 @@ void Addbook()
     clearinputbuffer();
     printf("Specify Category");
     fgets(books[n+1].category,50,stdin);
-
-
+    printf("Please enter date book was published in form dd/mm/yy");
+    fgets("%d%d%D",books[n+1].date.day,stdin);
+    fgets("%d%d%D",books[n+1].date.month,stdin);
+    fgets("%d%d%D",books[n+1].date.year,stdin);
 
 
 
@@ -75,7 +77,7 @@ void Memberegister()
     FILE *fp;
     for(i=0;i<10000;i++)
     {
-        if(! members[i].firstname)
+        if(strlen(members[i].firstname)==0) //check this and apply to add book if applicable.....
         break;
         else
             n++;
@@ -118,15 +120,15 @@ void Memberegister()
     return str;
 
 }
-int clearinputbuffer()
+int clearinputbuffer() // function not working on my mac , control may reach end of nonnnn
 {
     int ch;
     while(((ch = getchar())!= EOF) && (ch != '\n'))
         return ch;
 }
-void Deletebook(char * isbn)//INCOMPLETE
+void Deletebook(char * isbn)//Done
 {
-    int ,i;
+    int i;
     for(i=0;i<10000;i++)
     {
         if(strcmp(books[i].ISBN,isbn)==0)
@@ -135,17 +137,17 @@ void Deletebook(char * isbn)//INCOMPLETE
         }
 
     }
-    books[i].title= "\0";
-    books[i].ISBN== "\0";
+    strcpy(books[i].title,"/0");
+    strcpy(books[i].ISBN,"/0");
 }
 Book Searchbook(char * isbn)
 {
-    int f=0,i,j,n = 0;
+    int f=0,i,j,n = 0; // variable f??
 
     for(i=0;i<10000;i++)
     {
 
-        if(! books[i].ISBN)
+        if(! books[i].ISBN) // apply here if works in add member
             break;
         else
             n++;
