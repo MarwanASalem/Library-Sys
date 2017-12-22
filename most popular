@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <time.h>
+void Mostpopular(Book book[])
+{
+    int i,max=0,m1,m2,m3,m4,m5;
+    for (i=0;i<10000;i++)
+    {
+      if(books[i].copiesborrowed>max)
+      {
+          max=books[i].copiesborrowed;
+        m1=i;
+      }
+    }
+    max=0;
+    for(i=0;i<10000;i++)
+    {
+    if (books[m1].copiesborrowed)
+        continue;
+    if(books[i].copiesborrowed>max)
+    {
+        max=books[i].copiesborrowed;
+        m2=i;
+    }
+}
+     max=0;
+         for(i=0;i<10000;i++)
+    {
+    if (books[m1].copiesborrowed||books[m2].copiesborrowed)
+        continue;
+    if(books[i].copiesborrowed>max)
+    {
+        max=books[i].copiesborrowed;
+        m3=i;
+    }
+}
+     max=0;
+         for(i=0;i<10000;i++)
+    {
+    if (books[m1].copiesborrowed||books[m2].copiesborrowed||books[m3].copiesborrowed)
+        continue;
+    if(books[i].copiesborrowed>max)
+    {
+        max=books[i].copiesborrowed;
+        m4=i;
+    }
+}
+     max=0;
+         for(i=0;i<10000;i++)
+    {
+    if (books[m1].copiesborrowed||books[m2].copiesborrowed||books[m3].copiesborrowed||books[m4].copiesborrowed)
+        continue;
+    if(books[i].copiesborrowed>max)
+    {
+        max=books[i].copiesborrowed;
+        m5=i;
+    }
+}
+printf("top 5 most popular books are :/n1)%s/n2)%s/n3)%s/n4)%s/n5)%s",books[m1].title,books[m2].title,books[m3].title,books[m4].title,books[m5].title);
+}
