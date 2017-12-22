@@ -38,7 +38,7 @@ void Addcopy(Book book1, int nc)
 void Addbook()
 {
     int i,n=0;
-    FILE *fp;
+//    FILE *fp;
     for(i=0;i<10000;i++)
     {
         if(members[i].visibility==0)
@@ -47,26 +47,27 @@ void Addbook()
             n++;
     }
     printf("Enter title\n");
-    fgets(books[n+1].title,100,stdin);
-    trim(books[n+1].title);
+    fgets(books[n].title,100,stdin);
+    trim(books[n].title);
     printf("Specify the author");
-    fgets(books[n+1].author,100,stdin);
-    trim(books[n+1].author);
+    fgets(books[n].author,100,stdin);
+    trim(books[n].author);
     printf("Specify the publisher");
-    fgets(books[n+1].publisher,100,stdin);
-    trim(books[n+1].publisher);
+    fgets(books[n].publisher,100,stdin);
+    trim(books[n].publisher);
     printf("Enter book ISBN");
-    fgets(books[n+1].ISBN,14,stdin);
-    trim(books[n+1].ISBN);
+    fgets(books[n].ISBN,14,stdin);
+    trim(books[n].ISBN);
     printf("Enter Number of copies");
-    scanf("%d",&books[n+1].copies);
+    scanf("%d",&books[n].copies);
     fflush(stdin);
     printf("Specify Category");
-    fgets(books[n+1].category,50,stdin);
+    fgets(books[n].category,50,stdin);
     printf("Please enter date book was published in form dd/mm/yy");
-    fgets("%d%d%D",books[n+1].date.day,stdin);
-    fgets("%d%d%D",books[n+1].date.month,stdin);
-    fgets("%d%d%D",books[n+1].date.year,stdin);
+    fgets("%d%d%D",books[n].date.day,stdin);
+    fgets("%d%d%D",books[n].date.month,stdin);
+    fgets("%d%d%D",books[n].date.year,stdin);
+    books[n].visibility=1;
 
 
 
@@ -105,6 +106,7 @@ void Memberegister()
                         trim(members[n].address.street);
                         fgets(members[n].address.building,25,stdin);
                         trim(members[n].address.building);
+                        members[n].visibility=1;
                       //  fp=fopen("members.txt","a");
                         //fprintf(fp,"%s-%s-%d-%d-%s-%s-%s-%s-%s",members[n+1].firstname,members[n+1].lastname,members[n+1].age,members[n+1].ID,members[n+1].phonenumber,members[n+1].email,members[n+1].address.city,members[n+1].address.street,members[n+1].address.street);
 
@@ -135,7 +137,7 @@ void Deletebook(char * isbn)//Done
 }
 Book Searchbook(char * isbn)
 {
-    int f=0,i,j,n = 0; // variable f??
+    int i,j,n = 0; // variable f??
 
     for(i=0;i<10000;i++)
     {
@@ -158,7 +160,7 @@ Book Searchbook(char * isbn)
 }
 Book Searchbook(char * title)
 {
-    int f=0,i,j,n = 0; // variable f??
+    int i,j,n = 0; // variable f??
 
     for(i=0;i<10000;i++)
     {
@@ -172,7 +174,7 @@ Book Searchbook(char * title)
 }
 Book Searchbook(char * author)
 {
-    int f=0,i,j,n = 0; // variable f??
+    int i,j,n = 0; // variable f??
 
     for(i=0;i<10000;i++)
     {
@@ -206,7 +208,35 @@ void Overduebooks(void)
         }
     }
 }
-Memberborrow()
+void Memberborrow(int StID,char * isbn)
 {
-
+    int i,n = 0;
+    for(i=0;i<10000;i++)
+    {
+        if(borrowing[i].visibility==0)
+            break;
+        else
+            n++;
+    }
+    for(i=0;i<10000;i++)
+    {
+        if(members[i].ID==StID)
+        {
+            borrowing[n].member.ID=StID;
+            break;
+        }
+    }
+    for(i=0;i<10000;i++)
+    {
+        if(strcmp(books[i].ISBN,isbn)==0)
+        {
+            strcpy(borrowing[n].book.ISBN,isbn);
+            break;
+        }
+        
+    }
+    borrowing[n].visibility=1;
+    
+    
+    
 }
