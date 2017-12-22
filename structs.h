@@ -43,7 +43,7 @@ typedef struct {
     int copiesborrowed;
     char category[50];
     Date date;
-    int visibility; //0 invisible , 1 visible //
+    int visibility; //0 invisible , 1 visible
 
 }Book;
 
@@ -51,20 +51,19 @@ typedef struct{
     Member member;
     Book book;
     Date date;
-    int counter;
 }Borrowing;
 
 
 int Comparedate(Date date1, Date date2);//Done
 void Addbook(); // Done
 Book Searchbook(char * isbn); //Done
-void Addcopy(Book book,int nc);//incomplete
-void Deletebook(char * isbn);//Harouni, incomplete
-void Memberegister(void);//done
+void Addcopy(Book book,int nc);//done
+void Deletebook(char * isbn);//done
+void Memberegister(int ID, char * isbn);//done
 void Memberborrow(int StID,char * isbn);//lesa
 void Bookreturn(Borrowing book[]);//lesa
-void Removemember(Member member);//lesa
-void Overduebooks(void);//lesa
+void Removemember(Member member);//Done
+void Overduebooks(void);//Done
 void Mostpopular(Book book[]);//lesa
 Book Searchbook(char * title);
 Book Searchbook(char * author);

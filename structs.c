@@ -195,7 +195,7 @@ void Overduebooks(void)
     datecmp.month=tm->tm_mon;
     datecmp.day=tm->tm_mday;
 
-    
+
     for(i=0;i<10000;i++)
     {
         if((Comparedate(datecmp,borrowing[i].date))==0)
@@ -206,4 +206,7 @@ void Overduebooks(void)
         }
     }
 }
+Memberborrow()
+{
 
+}
