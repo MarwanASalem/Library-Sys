@@ -52,7 +52,7 @@ int main()
                 {
 
                     char bookname[100];
-                    clearinputbuffer();
+                    fflush(stdin);
                     fgets(bookname,100,stdin);
 
                     Book Searchbook(char * isbn);
@@ -96,7 +96,7 @@ int main()
                     do{
                             fblock++;
                         printf("Enter the admin password");
-                        clearinputbuffer();
+                        fflush(stdin);
                         fgets(passwordinput,100,stdin);
                         fp=fopen("password.txt","r");
                         fgets(password,100,fp);
@@ -147,7 +147,7 @@ int main()
             fp=fopen("members.txt","w");
             printf("Please enter the initial number of members\n");
             scanf("%d",&x);
-            clearinputbuffer();
+            fflush(stdin);
             for(i=0;i<x;i++)
             {
                         printf("Enter First name\n");
@@ -160,7 +160,7 @@ int main()
                         scanf("%d",&members[i].ID);
                         printf("Enter age\n");
                         scanf("%d", &members[i].age);
-                        clearinputbuffer();
+                        fflush(stdin);
                         printf("Enter phone number\n");
                         fgets(members[i].phonenumber,20,stdin);
                         trim(members[i].phonenumber);
@@ -186,7 +186,7 @@ int main()
            /* fp=fopen("Books.txt","w");
            printf("Enter number of Books you want to initialize the library with\n");
             scanf("%d",&y);
-            clearinputbuffer();
+            fflush(stdin);
             for(i=0;i<y;i++)
             {
                 printf("Book [%d]",(i+1));

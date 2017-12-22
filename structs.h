@@ -25,6 +25,7 @@ typedef struct {
     char phonenumber[20];
     int age;
     char email[100];
+    int visibility; //0 invisible , 1 visible //
     } Member;
 
 typedef struct {
@@ -39,8 +40,10 @@ typedef struct {
     char publisher[100];
     char ISBN[14];
     int copies;
+    int copiesborrowed;
     char category[50];
     Date date;
+    int visibility; //0 invisible , 1 visible //
 
 }Book;
 
@@ -66,7 +69,6 @@ void Mostpopular(Borrowing book1);//lesa
 Book Searchbook(char * title);
 Book Searchbook(char * author);
 char * trim(char *  str);
-int clearinputbuffer(void);
 extern Member members[];
 extern Book books[];
 extern Borrowing borrowing[];

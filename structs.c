@@ -60,7 +60,7 @@ void Addbook()
     trim(books[n+1].ISBN);
     printf("Enter Number of copies");
     scanf("%d",&books[n+1].copies);
-    clearinputbuffer();
+    fflush(stdin);
     printf("Specify Category");
     fgets(books[n+1].category,50,stdin);
     printf("Please enter date book was published in form dd/mm/yy");
@@ -77,7 +77,7 @@ void Memberegister()
     FILE *fp;
     for(i=0;i<10000;i++)
     {
-        if(strlen(members[i].firstname)==0) //check this and apply to add book if applicable.....
+        if(members[i].visibility==0) //check this and apply to add book if applicable.....
         break;
         else
             n++;
@@ -92,7 +92,7 @@ void Memberegister()
                         scanf("%d",&members[n+1].ID);
                         printf("Enter age\n");
                         scanf("%d", &members[n+1].age);
-                        clearinputbuffer();
+                        fflush(stdin);
                         printf("Enter phone number\n");
                         fgets(members[n+1].phonenumber,20,stdin);
                         trim(members[n+1].phonenumber);
@@ -120,12 +120,7 @@ void Memberegister()
     return str;
 
 }
-int clearinputbuffer() // function not working on my mac , control may reach end of nonnnn
-{
-    int ch;
-    while(((ch = getchar())!= EOF) && (ch != '\n'))
-        return ch;
-}
+
 void Deletebook(char * isbn)//Done
 {
     int i;
@@ -137,8 +132,7 @@ void Deletebook(char * isbn)//Done
         }
 
     }
-    strcpy(books[i].title,"/0");
-    strcpy(books[i].ISBN,"/0");
+    books[i].visibility=0
 }
 Book Searchbook(char * isbn)
 {
@@ -147,7 +141,7 @@ Book Searchbook(char * isbn)
     for(i=0;i<10000;i++)
     {
 
-        if(! books[i].ISBN) // apply here if works in add member
+        if(books[i].visibility==0) // apply here if works in add member
             break;
         else
             n++;
@@ -170,20 +164,11 @@ Book Searchbook(char * title)
     for(i=0;i<10000;i++)
     {
 
-        if(! books[i].title) // apply here if works in add member
+        if(add here) // apply here if works in add member
             break;
         else
             n++;
-    }
-    for(j=0;j<n;j++)
-    {
-        if(strcmp(isbn,books[j].ISBN)==0)
-        {
-            break;
-        }
-
-
-    }
+ }
     return books[j];
 }
 Book Searchbook(char * author)
@@ -193,19 +178,10 @@ Book Searchbook(char * author)
     for(i=0;i<10000;i++)
     {
 
-        if(! books[i].author) // apply here if works in add member
+        if(add here) // apply here if works in add member
             break;
         else
             n++;
-    }
-    for(j=0;j<n;j++)
-    {
-        if(strcmp(isbn,books[j].ISBN)==0)
-        {
-            break;
-        }
-
-
     }
     return books[j];
 }
