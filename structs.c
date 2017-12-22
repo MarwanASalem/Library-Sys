@@ -163,3 +163,49 @@ Book Searchbook(char * isbn)
     }
     return books[j];
 }
+Book Searchbook(char * title)
+{
+    int f=0,i,j,n = 0; // variable f??
+
+    for(i=0;i<10000;i++)
+    {
+
+        if(! books[i].title) // apply here if works in add member
+            break;
+        else
+            n++;
+    }
+    for(j=0;j<n;j++)
+    {
+        if(strcmp(isbn,books[j].ISBN)==0)
+        {
+            break;
+        }
+
+
+    }
+    return books[j];
+}
+Book Searchbook(char * author)
+{
+    int f=0,i,j,n = 0; // variable f??
+
+    for(i=0;i<10000;i++)
+    {
+
+        if(! books[i].author) // apply here if works in add member
+            break;
+        else
+            n++;
+    }
+    for(j=0;j<n;j++)
+    {
+        if(strcmp(isbn,books[j].ISBN)==0)
+        {
+            break;
+        }
+
+
+    }
+    return books[j];
+}

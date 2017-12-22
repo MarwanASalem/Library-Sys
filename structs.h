@@ -63,6 +63,8 @@ void Bookreturn(Borrowing book1);//lesa
 void Removemember(Member member1);//lesa
 void Overduebooks(Borrowing book1);//lesa
 void Mostpopular(Borrowing book1);//lesa
+Book Searchbook(char * title);
+Book Searchbook(char * author);
 char * trim(char *  str);
 int clearinputbuffer(void);
 extern Member members[];

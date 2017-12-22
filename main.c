@@ -51,6 +51,13 @@ int main()
             case 3 :
                 {
 
+                    char bookname[100];
+                    clearinputbuffer();
+                    fgets(bookname,100,stdin);
+
+                    Book Searchbook(char * isbn);
+
+
                     break;
                 }
             case 4 :
