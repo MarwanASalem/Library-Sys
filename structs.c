@@ -28,7 +28,7 @@ int Comparedate(Date date1, Date date2 ) // Date 1 is the current date, date 2 i
     else
         return 0;
 }// 1= not due
-// 2= over due
+// 0= over due
 void Addcopy(Book book1, int nc)
 {
     int a;
@@ -41,7 +41,7 @@ void Addbook()
     FILE *fp;
     for(i=0;i<10000;i++)
     {
-        if(! books[i].ISBN)
+        if(members[i].visibility==0)
         break;
         else
             n++;
@@ -74,7 +74,6 @@ void Addbook()
 void Memberegister()
 {
     int i,n = 0;
-    FILE *fp;
     for(i=0;i<10000;i++)
     {
         if(members[i].visibility==0) //check this and apply to add book if applicable.....
@@ -83,31 +82,31 @@ void Memberegister()
             n++;
     }
                         printf("Enter First name\n");
-                        fgets(members[n+1].firstname,25,stdin);
-                        trim(members[n+1].firstname);
+                        fgets(members[n].firstname,25,stdin);
+                        trim(members[n].firstname);
                         printf("Enter Last name\n");
-                        fgets(members[n+1].lastname,25,stdin);
-                        trim(members[n+1].lastname);
+                        fgets(members[n].lastname,25,stdin);
+                        trim(members[n].lastname);
                         printf("Enter ID\n");
-                        scanf("%d",&members[n+1].ID);
+                        scanf("%d",&members[n].ID);
                         printf("Enter age\n");
-                        scanf("%d", &members[n+1].age);
+                        scanf("%d", &members[n].age);
                         fflush(stdin);
                         printf("Enter phone number\n");
-                        fgets(members[n+1].phonenumber,20,stdin);
-                        trim(members[n+1].phonenumber);
+                        fgets(members[n].phonenumber,20,stdin);
+                        trim(members[n].phonenumber);
                         printf("Enter E-Mail\n");
-                        fgets(members[n+1].email,100,stdin);
-                        trim(members[n+1].email);
+                        fgets(members[n].email,100,stdin);
+                        trim(members[n].email);
                         printf("Enter Address with 'enters' between the city, the name and the address\n");
-                        fgets(members[n+1].address.city,25,stdin);
-                        trim(members[n+1].address.city);
-                        fgets(members[n+1].address.street,25,stdin);
-                        trim(members[n+1].address.street);
-                        fgets(members[n+1].address.building,25,stdin);
-                        trim(members[n+1].address.building);
-                        fp=fopen("members.txt","a");
-                        fprintf(fp,"%s-%s-%d-%d-%s-%s-%s-%s-%s",members[n+1].firstname,members[n+1].lastname,members[n+1].age,members[n+1].ID,members[n+1].phonenumber,members[n+1].email,members[n+1].address.city,members[n+1].address.street,members[n+1].address.street);
+                        fgets(members[n].address.city,25,stdin);
+                        trim(members[n].address.city);
+                        fgets(members[n].address.street,25,stdin);
+                        trim(members[n].address.street);
+                        fgets(members[n].address.building,25,stdin);
+                        trim(members[n].address.building);
+                      //  fp=fopen("members.txt","a");
+                        //fprintf(fp,"%s-%s-%d-%d-%s-%s-%s-%s-%s",members[n+1].firstname,members[n+1].lastname,members[n+1].age,members[n+1].ID,members[n+1].phonenumber,members[n+1].email,members[n+1].address.city,members[n+1].address.street,members[n+1].address.street);
 
 
 
@@ -164,7 +163,7 @@ Book Searchbook(char * title)
     for(i=0;i<10000;i++)
     {
 
-        if(add here) // apply here if works in add member
+        if(strcmp(title,books[j].title)==0) // apply here if works in add member
             break;
         else
             n++;
@@ -178,7 +177,7 @@ Book Searchbook(char * author)
     for(i=0;i<10000;i++)
     {
 
-        if(add here) // apply here if works in add member
+        if(strcmp(author,books[j].author)==0) // apply here if works in add member
             break;
         else
             n++;
