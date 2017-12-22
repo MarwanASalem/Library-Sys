@@ -51,12 +51,13 @@ typedef struct{
     Member member;
     Book book;
     Date date;
+    int visibility; //0 invisible , 1 visible
 }Borrowing;
 
 
 int Comparedate(Date date1, Date date2);//Done
 void Addbook(void); // Done
-Book Searchbook(char * isbn); //Done
+Book Searchbook1(char * isbn); //Done
 void Addcopy(Book book,int nc);//done
 void Deletebook(char * isbn);//done
 void Memberegister(int ID, char * isbn);//done
@@ -65,8 +66,8 @@ void Bookreturn(Borrowing book[]);//lesa
 void Removemember(Member member);//Done
 void Overduebooks(void);//Done
 void Mostpopular(Book book[]);//lesa
-Book Searchbook(char * title);
-Book Searchbook(char * author);
+Book Searchbook2(char * title);
+Book Searchbook3(char * author);
 char * trim(char *  str);
 extern Member members[];
 extern Book books[];

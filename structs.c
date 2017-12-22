@@ -77,7 +77,7 @@ void Memberegister()
     int i,n = 0;
     for(i=0;i<10000;i++)
     {
-        if(members[i].visibility==0) //check this and apply to add book if applicable.....
+        if(members[i].visibility==0)
         break;
         else
             n++;
@@ -135,14 +135,14 @@ void Deletebook(char * isbn)//Done
     }
     books[i].visibility=0;
 }
-Book Searchbook(char * isbn)
+Book Searchbook1(char * isbn)
 {
-    int i,j,n = 0; // variable f??
+    int i,j,n = 0;
 
     for(i=0;i<10000;i++)
     {
 
-        if(books[i].visibility==0) // apply here if works in add member
+        if(books[i].visibility==0)
             break;
         else
             n++;
@@ -158,33 +158,33 @@ Book Searchbook(char * isbn)
     }
     return books[j];
 }
-Book Searchbook(char * title)
+Book Searchbook2(char * title)
 {
-    int i,j,n = 0; // variable f??
+    int i,n = 0; // variable f??
 
     for(i=0;i<10000;i++)
     {
 
-        if(strcmp(title,books[j].title)==0) // apply here if works in add member
+        if(strcmp(title,books[i].title)==0)
             break;
         else
             n++;
  }
-    return books[j];
+    return books[i];
 }
-Book Searchbook(char * author)
+Book Searchbook3(char * author)
 {
-    int i,j,n = 0; // variable f??
+    int i,n = 0;
 
     for(i=0;i<10000;i++)
     {
 
-        if(strcmp(author,books[j].author)==0) // apply here if works in add member
+        if(strcmp(author,books[i].author)==0)
             break;
         else
             n++;
     }
-    return books[j];
+    return books[i];
 }
 
 void Overduebooks(void)
@@ -242,7 +242,7 @@ void Memberborrow(int StID,char * isbn)
 }
 void Mostpopular(Book book[])
 {
-    int i,max=0,m1,m2,m3,m4,m5;
+    int i,max=0,m1= 0,m2= 0,m3= 0,m4= 0,m5 = 0;
     for (i=0;i<10000;i++)
     {
         if(books[i].copiesborrowed>max)

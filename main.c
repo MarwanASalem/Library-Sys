@@ -20,7 +20,7 @@ Book books[10000];
 Borrowing borrowing[10000];
 int main()
 {
-               int f1=0,f2,fblock=0; //f1 flag for password verification.
+               int flag=1, f1=0,f2,fblock=0; //f1 flag for password verification.
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
 
@@ -36,7 +36,7 @@ int main()
             scanf("%d",&e);
         while(e>11 || e<0);
 
-       /* switch(e)
+        /*do{ switch(e)
         {
             case 1 :
             {
@@ -119,8 +119,16 @@ int main()
 
                     break;
                 }
+        case 12 :
+        {SAVE
 
         }
+        case 13 :
+         exit(1);
+         }
+         }
+         }
+         while(flag);
 */
     }
     else
