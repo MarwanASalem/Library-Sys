@@ -1,6 +1,17 @@
+#include <stdio.h>
 #include <time.h>
-
+void overdue_books()
+{
+int i;
 time_t t = time(NULL);
-tm = *localtime(&t);
-
-printf("now: %d-%d-%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday);
+struct tm *tm = localtime(&t);
+for(i=0;i<10000;i++)
+{
+if((comparedate(tm,borrowing[i].date))==0)
+ {
+    printf("overdue books:/n");
+printf("borrower's ID : %d/t",borrowing[i].members.ID);
+printf("book's name : %s/n",borrowing[i].books.title);
+ }
+}
+}
