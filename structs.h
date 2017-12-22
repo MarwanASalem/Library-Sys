@@ -64,7 +64,7 @@ void Memberegister(void);//done
 void Memberborrow(int StID,char * isbn);//lesa
 void Bookreturn(Borrowing book[]);//lesa
 void Removemember(Member member);//lesa
-void Overduebooks(Borrowing book[]);//lesa
+void Overduebooks(void);//lesa
 void Mostpopular(Book book[]);//lesa
 Book Searchbook(char * title);
 Book Searchbook(char * author);

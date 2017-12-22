@@ -131,7 +131,7 @@ void Deletebook(char * isbn)//Done
         }
 
     }
-    books[i].visibility=0
+    books[i].visibility=0;
 }
 Book Searchbook(char * isbn)
 {
@@ -184,3 +184,26 @@ Book Searchbook(char * author)
     }
     return books[j];
 }
+
+void Overduebooks(void)
+{
+    Date datecmp;
+    int i;
+    time_t t = time(NULL);
+    struct tm *tm = localtime(&t);
+    datecmp.year=tm->tm_year;
+    datecmp.month=tm->tm_mon;
+    datecmp.day=tm->tm_mday;
+
+    
+    for(i=0;i<10000;i++)
+    {
+        if((Comparedate(datecmp,borrowing[i].date))==0)
+        {
+            printf("Overdue Books:/n");
+            printf("Borrower's ID : %d/t",borrowing[i].member.ID);
+            printf("Book's name : %s/n",borrowing[i].book.title);
+        }
+    }
+}
+
