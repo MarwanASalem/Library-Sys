@@ -2,8 +2,8 @@
 //  structs.c
 //  Library System
 //
-//  Created by Marwan Salem and Mohamed Alharouni on 11/29/17.
-//  Copyright © 2017 Marwan Salem. All rights reserved.
+//  Created by ASHProductions on 11/29/17.
+//  Copyright © 2017 ASHProductions. All rights reserved.
 //
 
 #include "structs.h"
@@ -182,7 +182,7 @@ Book Searchbook2(char * title)
         if(strcmp(title,books[i].title)==0)
             break;
  }
-  if (j==1000)
+  if (i==1000)
         return b;
     else
         return books[i];
@@ -199,7 +199,7 @@ Book Searchbook3(char * author)
         if(strcmp(author,books[i].author)==0)
             break;
     }
-     if (j==1000)
+     if (i==1000)
         return b;
     else
         return books[i];
@@ -250,15 +250,25 @@ void Memberborrow(int StID,char * isbn)//Add Due Date!!!!!!!!!
         {
             if(books[i].copiesborrowed>=books[i].copies)
             {
-                break;
                 f=1;
-
-            }
+                break;
+                
+}
             strcpy(borrowing[n].book.ISBN,isbn);
             books[i].copiesborrowed++;
+            Date datecmp;
+            time_t t = time(NULL);
+            struct tm *tm = localtime(&t);
+            datecmp.year=tm->tm_year;
+            datecmp.month=tm->tm_mon;
+            datecmp.day=tm->tm_mday;
+            borrowing[i].date.year=datecmp.year;
+            borrowing[i].date.month=datecmp.month+1;
+            borrowing[i].date.day=datecmp.day;
             break;
         }
 
+        
     }
     if(f==0)
         borrowing[n].visibility=1;
@@ -280,7 +290,7 @@ void Mostpopular(Book book[])
     max=0;
     for(i=0;i<10000;i++)
     {
-        if (books[m1].copiesborrowed)
+        if (i==m1)
             continue;
         if(books[i].copiesborrowed>max)
         {
@@ -291,7 +301,7 @@ void Mostpopular(Book book[])
     max=0;
     for(i=0;i<10000;i++)
     {
-        if (books[m1].copiesborrowed||books[m2].copiesborrowed)
+        if (i==m1||i==m2)
             continue;
         if(books[i].copiesborrowed>max)
         {
@@ -302,7 +312,7 @@ void Mostpopular(Book book[])
     max=0;
     for(i=0;i<10000;i++)
     {
-        if (books[m1].copiesborrowed||books[m2].copiesborrowed||books[m3].copiesborrowed)
+        if (i==m1||i==m2||i==m3)
             continue;
         if(books[i].copiesborrowed>max)
         {
@@ -313,7 +323,7 @@ void Mostpopular(Book book[])
     max=0;
     for(i=0;i<10000;i++)
     {
-        if (books[m1].copiesborrowed||books[m2].copiesborrowed||books[m3].copiesborrowed||books[m4].copiesborrowed)
+        if (i==m1||i==m2||i==m3||i==m4)
             continue;
         if(books[i].copiesborrowed>max)
         {
@@ -321,7 +331,7 @@ void Mostpopular(Book book[])
             m5=i;
         }
     }
-    printf("Top 5 Most Popular Books are :/n1)%s/n2)%s/n3)%s/n4)%s/n5)%s",books[m1].title,books[m2].title,books[m3].title,books[m4].title,books[m5].title);
+    printf("Most Popular Books are :\n1)%s\n2)%s\n3)%s\n4)%s\n5)%s",books[m1].title,books[m2].title,books[m3].title,books[m4].title,books[m5].title);
 }
 void Bookreturn(int StID,char * isbn)
 {
@@ -331,7 +341,7 @@ void Bookreturn(int StID,char * isbn)
     {
         if (borrowing[i].member.ID==StID)
         {
-            for (j=0;j<1000j++)
+            for (j=0;j<1000;j++)
             {
                 if(strcmp(borrowing[j].book.ISBN,isbn)==0)
                 {
@@ -360,3 +370,130 @@ void Removemember(int ID)
 else
     members[i].visibility=0;
 }
+
+void savingmembers(void){
+    
+    fpointm=fopen("Members.txt","w");
+    int i;
+    for(i=0;i<10000;i++){
+        
+        if(members[i].visibility==1) {
+            fprintf(fpointm,"%s,",members[i].firstname);
+            fprintf(fpointm,"%s,",members[i].lastname);
+            fprintf(fpointm,"%d,",members[i].ID);
+            fprintf(fpointm,"%s,",members[i].address.building);
+            fprintf(fpointm,"%s,",members[i].address.street);
+            fprintf(fpointm,"%s,",members[i].address.city);
+            fprintf(fpointm,"%s,",members[i].phonenumber);
+            fprintf(fpointm,"%d,",members[i].age);
+            fprintf(fpointm,"%s,",members[i].email);
+            fprintf(fpointm,"\n");
+        }
+        else  continue;
+        
+    }
+    fclose(fpointm);
+}
+
+void savingbooks(void){
+    
+    fpointbk=fopen("Books.txt","w");
+    int j;
+    for(j=0;j<10000;j++){
+        if(books[j].visibility==1) {
+            fprintf(fpointbk,"%s,",books[j].title);
+            fprintf(fpointbk,"%s,",books[j].author);
+            fprintf(fpointbk,"%s,",books[j].publisher);
+            fprintf(fpointbk,"%s,",books[j].ISBN);
+            fprintf(fpointbk,"%d,",books[j].copies);
+            fprintf(fpointbk,"%d,",books[j].copiesborrowed);
+            fprintf(fpointbk,"%s,",books[j].category);
+            fprintf(fpointbk,"%d,",books[j].date.day);
+            fprintf(fpointbk,"%d,",books[j].date.month);
+            fprintf(fpointbk,"%d,",books[j].date.year);
+            fprintf(fpointbk,"\n");
+        }
+        
+        else  continue;
+    }
+    fclose(fpointbk);
+}
+void savingborrow(void){
+    
+    fpointbr=fopen("Borrowing.txt","w");
+    int k;
+    for(k=0;k<10000;k++){
+        if(borrowing[k].visibility==1){
+            fprintf(fpointbr,"%d,",borrowing[k].member.ID);
+            fprintf(fpointbr,"%s,",borrowing[k].book.ISBN);
+            fprintf(fpointbr,"%d,",borrowing[k].date.day);
+            fprintf(fpointbr,"%d,",borrowing[k].date.month);
+            fprintf(fpointbr,"%d,",borrowing[k].date.year);
+            fprintf(fpointbr,"\n");
+        }
+        else continue;
+    }
+    fclose(fpointbr);
+}
+void scanningmembers(void){
+    int i=0;
+    fpointm=fopen("Members.txt","r");
+    if(fpointm!=NULL){
+        while(!feof(fpointm)){
+            fscanf(fpointm,"%[^,],",members[i].firstname);
+            fscanf(fpointm,"%[^,],",members[i].lastname);
+            fscanf(fpointm,"%d,",&members[i].ID);
+            fscanf(fpointm,"%[^,],",members[i].address.building);
+            fscanf(fpointm,"%[^,],",members[i].address.street);
+            fscanf(fpointm,"%[^,],",members[i].address.city);
+            fscanf(fpointm,"%[^,],",members[i].phonenumber);
+            fscanf(fpointm,"%d,",&members[i].age);
+            fscanf(fpointm,"%[^,],",members[i].email);
+}
+        
+    }
+    fclose(fpointm);
+}
+void scanningbooks(void){
+    int i=0;
+    fpointbk=fopen("Books.txt","r");
+    if(fpointbk!=NULL){
+        while(!feof(fpointbk)){
+            fscanf(fpointbk,"%[^,],",books[i].title);
+            fscanf(fpointbk,"%[^,],",books[i].author);
+            fscanf(fpointbk,"%[^,],",books[i].publisher);
+            fscanf(fpointbk,"%[^,],",books[i].ISBN);
+            fscanf(fpointbk,"%d,",&books[i].copies);
+            fscanf(fpointbk,"%d,",&books[i].copiesborrowed);
+            fscanf(fpointbk,"%[^,],",books[i].category);
+            fscanf(fpointbk,"%d,",&books[i].date.day);
+            fscanf(fpointbk,"%d,",&books[i].date.month);
+            fscanf(fpointbk,"%d,",&books[i].date.year);
+        }
+    }
+    fclose(fpointbk);
+}
+void scanningborrow(void){
+    int i=0;
+    fpointbr=fopen("Borrow.txt","r");
+    if(fpointbr!=NULL){
+        while(!feof(fpointbr)){
+            fscanf(fpointbr,"%d,",&borrowing[i].member.ID);
+            fscanf(fpointbr,"%[^,],",borrowing[i].book.ISBN);
+            fscanf(fpointbr,"%d,",&borrowing[i].date.day);
+            fscanf(fpointbr,"%d,",&borrowing[i].date.month);
+            fscanf(fpointbr,"%d,",&borrowing[i].date.year);
+        }
+    }
+    fclose(fpointbr);
+}
+
+
+
+
+
+
+
+
+
+

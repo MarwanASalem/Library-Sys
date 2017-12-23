@@ -2,8 +2,8 @@
 //  main.c
 //  Library System
 //
-//  Created by SHProductions on 11/29/17.
-//  Copyright © 2017 Marwan Salem. All rights reserved.
+//  Created by ASHProductions on 11/29/17.
+//  Copyright © 2017 ASHProductions. All rights reserved.
 //
 
 #include <stdio.h>
@@ -13,8 +13,10 @@
 #include "structs.h"
 #include "structs.c"
 
-
-
+FILE * fp;
+FILE * fpointm;
+FILE * fpointbk;
+FILE * fpointbr;
 Member members[1000];
 Book books[10000];
 Borrowing borrowing[10000];
@@ -28,20 +30,18 @@ int main()
     //f is the flag needed for the error handling and
     //y is the number of books desired to initialize
     //e variable to hold the number to the function to execute.
-    FILE * fp;
-    FILE * fpoint;
-    FILE * fpoint1;
+
     if((fp=fopen("members.txt","r")))// to show the startup menu anytime but the first time.
     {
-        fpoint=fopen("Books.txt","a");
-        fpoint1=fopen("members.txt","a");
+        scanningmembers;
+        scanningbooks;
+        scanningborrow;
 
-        printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Exit\n\n");
+        printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Save\n13\n");
         do
             scanf("%d",&e);
         while(e>12 || e<0);
-
-        do{ switch(e)
+        switch(e)
         {
             case 1 ://check date
             {
@@ -77,7 +77,6 @@ int main()
                     printf("Enter number of copies u wish to add\n");
                     scanf("%d",&nc);
                     Addcopy(IS,nc);
-                    printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Exit\n\n");
                     break;
                 }
             case 5 :// DELETE BOOK//done
@@ -90,18 +89,21 @@ int main()
 
                     break;
                 }
-            case 6 ://MEMBER REGISTER
+            case 6 ://MEMBER REGISTER//done
                 {
                     Memberegister();
-
                     break;
                 }
-            case 7 ://MEMBER BORROW// add current time to the fn.
+            case 7 ://MEMBER BORROW//done
                 {
-
+                    int StID;
+                    char *isbn;
+                    printf("Please enter Student ID and Book ISBN");
+                    scanf("%d %s",&StID,isbn);
+                    Memberborrow(StID,isbn);
                     break;
                 }
-            case 8 ://RETURN BOOK
+            case 8 ://RETURN BOOK//done
                 {
                     char IS2[14];
                     printf("Enter book's ISBN\n");
@@ -116,7 +118,7 @@ int main()
 
                     break;
                 }
-            case 9 ://REMOVE MEMBER
+            case 9 ://REMOVE MEMBER//done
                 {
                     int id;
                 do{printf("Enter member ID\n");
@@ -126,7 +128,7 @@ int main()
 
                     break;
                 }
-            case 10 ://OVERDUE BOOKS
+            case 10 ://OVERDUE BOOKS//done
                 {
                     do{
                             fblock++;
@@ -147,11 +149,11 @@ int main()
                         }
                         while (f2!=0 && fblock<5);
                         fblock=0;
-                        //Code here
+                    Overduebooks();
 
                     break;
                 }
-            case 11 ://MOST POP
+            case 11 ://MOST POP//done
                 {
 
                     do{
@@ -176,22 +178,31 @@ int main()
                         Mostpopular(books);
                     break;
                 }
-        case 12 :// EXIT
+        case 12 :// save
         {
+             savingmembers();
+             savingbooks();
+             savingborrow();
+            
+            break;
+        }
+
+        case 13: // Exit
+        {
+            int exitn;
+            printf(")Save and Exit\nb)Exit without Saving");
+            scanf("%d",&exitn);
+            if(exitn==2)
             exit(1);
+            else {
+                savingmembers();
+                savingbooks();
+                savingborrow();
+            }
             break;
         }
-
-
-
-        case 13 ;// save
-        {
-            break;
-        }
+                
          }
-         while(flag);
-    }
-    else
         {
 
     do {
@@ -242,7 +253,7 @@ int main()
                         trim(members[i].address.street);
                         fgets(members[i].address.building,25,stdin);
                         trim(members[i].address.building);
-                        members[i].visibility=1
+                members[i].visibility=1;
 
                     fprintf(fp,"%s,%s,%d,%d,%s,%s,%s,%s,%s,%d",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street,members[i].visibility);
 
@@ -277,4 +288,4 @@ int main()
 
        }
     return 0;
-}
+    }}
