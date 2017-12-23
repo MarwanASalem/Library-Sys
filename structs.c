@@ -38,7 +38,7 @@ void Addcopy(Book book1, int nc)
 void Addbook()
 {
     int i,n=0;
-//    FILE *fp;
+
     for(i=0;i<10000;i++)
     {
         if(members[i].visibility==0)
@@ -137,16 +137,8 @@ void Deletebook(char * isbn)//Done
 }
 Book Searchbook1(char * isbn)
 {
-    int i,j,n = 0;
+    int f,j;
 
-    for(i=0;i<10000;i++)
-    {
-
-        if(books[i].visibility==0)
-            break;
-        else
-            n++;
-    }
     for(j=0;j<n;j++)
     {
         if(strcmp(isbn,books[j].ISBN)==0)
@@ -155,36 +147,42 @@ Book Searchbook1(char * isbn)
         }
 
 
+
     }
+    if (j==n)
+        return 0;
+    else
     return books[j];
 }
 Book Searchbook2(char * title)
 {
-    int i,n = 0; // variable f??
+    int i; // variable f??
 
     for(i=0;i<10000;i++)
     {
 
         if(strcmp(title,books[i].title)==0)
             break;
-        else
-            n++;
  }
-    return books[i];
+  if (j==n)
+        return 0;
+    else
+        return books[i];
 }
 Book Searchbook3(char * author)
 {
-    int i,n = 0;
+    int i;
 
     for(i=0;i<10000;i++)
     {
 
         if(strcmp(author,books[i].author)==0)
             break;
-        else
-            n++;
     }
-    return books[i];
+     if (j==n)
+        return 0;
+    else
+        return books[i];
 }
 
 void Overduebooks(void)
@@ -208,9 +206,9 @@ void Overduebooks(void)
         }
     }
 }
-void Memberborrow(int StID,char * isbn)
+void Memberborrow(int StID,char * isbn)//Add Due Date!!!!!!!!!
 {
-    int i,n = 0;
+    int i,n = 0,f=0;
     for(i=0;i<10000;i++)
     {
         if(borrowing[i].visibility==0)
@@ -220,7 +218,7 @@ void Memberborrow(int StID,char * isbn)
     }
     for(i=0;i<10000;i++)
     {
-        if(members[i].ID==StID)
+        if(members[i].ID==StID)// check the number of books borrowed.
         {
             borrowing[n].member.ID=StID;
             break;
@@ -230,15 +228,23 @@ void Memberborrow(int StID,char * isbn)
     {
         if(strcmp(books[i].ISBN,isbn)==0)
         {
+            if(books[i].copiesborrowed>=books[i].copies)
+            {
+                break;
+                f=1;
+
+            }
             strcpy(borrowing[n].book.ISBN,isbn);
+            books[i].copiesborrowed++;
             break;
         }
-        
+
     }
-    borrowing[n].visibility=1;
-    
-    
-    
+    if(f==0)
+        borrowing[n].visibility=1;
+
+
+
 }
 void Mostpopular(Book book[])
 {
@@ -296,4 +302,10 @@ void Mostpopular(Book book[])
         }
     }
     printf("Top 5 Most Popular Books are :/n1)%s/n2)%s/n3)%s/n4)%s/n5)%s",books[m1].title,books[m2].title,books[m3].title,books[m4].title,books[m5].title);
+}
+void Bookreturn(Borrowing borrowing)
+{
+    borrowing.member.ID=0;
+    borrowing.visibility=0;
+
 }

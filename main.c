@@ -31,24 +31,24 @@ int main()
     FILE * fp;
     if((fp=fopen("members.txt","r")))// to show the startup menu anytime but the first time.
     {
-        printf("Enter Function Index to execute:\n1)  Check Date\n2)  Add Book\n3)  Search For A Book\n4)  Add Copy\n5)  Delete Book\n6)  Member Register\n7)  Member Borrowing\n8)  Returning Book\n9)  Remove Member\n10) Overdue Books\n11) Most Popular Books ");
+        printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Exit\n\n");
         do
             scanf("%d",&e);
-        while(e>11 || e<0);
+        while(e>12 || e<0);
 
-        /*do{ switch(e)
+        do{ switch(e)
         {
-            case 1 :
+            case 1 ://check date
             {
 
                 break;
             }
-            case 2 :
+            case 2 ://ADD A BOOK
                 {
 
                     break;
                 }
-            case 3 :
+            case 3 :// SEARCH FOR S BOOK
                 {
 
                     char bookname[100];
@@ -60,38 +60,43 @@ int main()
 
                     break;
                 }
-            case 4 :
+            case 4 ://ADD COPY
+                {
+                    char IS[14];
+                    printf("Enter book's ISBN");
+                    fflush(stdin);
+                    fgets(IS,14,stdin);
+                    Searchbook1(IS);
+
+                    break;
+                }
+            case 5 :// DELETE BOOK
                 {
 
                     break;
                 }
-            case 5 :
-                {
-
-                    break;
-                }
-            case 6 :
+            case 6 ://MEMBER REGISTER
                 {
                     Memberegister();
 
                     break;
                 }
-            case 7 :
+            case 7 ://MEMBER BORROW
                 {
 
                     break;
                 }
-            case 8 :
+            case 8 ://RETURN BOOK
                 {
 
                     break;
                 }
-            case 9 :
+            case 9 ://REMOVE MEMBER
                 {
 
                     break;
                 }
-            case 10 :
+            case 10 ://OVERDUE BOOKS
                 {
                     do{
                             fblock++;
@@ -113,23 +118,19 @@ int main()
                         while (f2!=0 && fblock<5);
                     break;
                 }
-            case 11 :
+            case 11 ://MOST POP
                 {
                     printf("Enter the admin password");
 
                     break;
                 }
         case 12 :
-        {SAVE
-
+        {
+            exit(1);
+            break;
         }
-        case 13 :
-         exit(1);
-         }
-         }
          }
          while(flag);
-*/
     }
     else
         {
