@@ -329,9 +329,34 @@ void Bookreturn(int StID,char * isbn)
     int i,j ;
     for (i=0;i<1000;i++)
     {
-        if (borrowing.member.ID==StID)
-            break;
+        if (borrowing[i].member.ID==StID)
+        {
+            for (j=0;j<1000j++)
+            {
+                if(strcmp(borrowing[j].book.ISBN,isbn)==0)
+                {
+                    if (j==i)
+                        break;
+                }
+            }
+        }
     }
 
+borrowing[i].visibility=0;
+}
+void Removemember(int ID)
+{
+     int i;
+    for(i=0;i<1000;i++)
+    {
+        if(members[i].ID==ID)
+        {
+            break;
+        }
 
+    }
+    if(i==1000)
+    printf("Invalid ID");
+else
+    members[i].visibility=0;
 }

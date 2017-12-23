@@ -111,12 +111,18 @@ int main()
                     do{printf("Enter member ID\n");
                     scanf("%d",&stid);}
                     while(stid<=0 || stid>10000 );
+                    Bookreturn(stid,IS2);
 
 
                     break;
                 }
             case 9 ://REMOVE MEMBER
                 {
+                    int id;
+                do{printf("Enter member ID\n");
+                    scanf("%d",&id);}
+                    while(id<=0 || id>10000 );
+                    Removemember(id);
 
                     break;
                 }
@@ -141,6 +147,7 @@ int main()
                         }
                         while (f2!=0 && fblock<5);
                         fblock=0;
+                        //Code here
 
                     break;
                 }
@@ -165,11 +172,20 @@ int main()
 
                         }
                         while (f2!=0 && fblock<5);
+                        fblock=0;
+                        Mostpopular(books);
                     break;
                 }
-        case 12 :
+        case 12 :// EXIT
         {
             exit(1);
+            break;
+        }
+
+
+
+        case 13 ;// save
+        {
             break;
         }
          }
@@ -236,7 +252,7 @@ int main()
 
             }
             fclose(fp);
-           /* fp=fopen("Books.txt","w");
+           fp=fopen("Books.txt","w");
            printf("Enter number of Books you want to initialize the library with\n");
             scanf("%d",&y);
             fflush(stdin);
@@ -254,9 +270,10 @@ int main()
                 trim(books[i].ISBN);
                 printf("Enter number of copies\n");
                 scanf("%d",&books[i].copies);
-                fprintf(fp,"%s_%s_%s_%d",books[i].category,books[i].title,books[i].ISBN,books[i].copies);
+                books[i].visibility=1;
+                fprintf(fp,"%s,%s,%s,%d,%d",books[i].category,books[i].title,books[i].ISBN,books[i].copies,books[i].visibility);
             }
-*/           printf("Please restart the program\n");
+           printf("Please restart the program\n");
 
        }
     return 0;
