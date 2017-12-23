@@ -82,6 +82,7 @@ extern FILE * fp;
 extern FILE * fpointm;
 extern FILE * fpointbk;
 extern FILE * fpointbr;
+void clearinputbuffer(void);
 
 
 #endif /* structs_h */

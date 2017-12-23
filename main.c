@@ -11,7 +11,6 @@
 #include <time.h>
 #include <string.h>
 #include "structs.h"
-#include "structs.c"
 
 FILE * fp;
 FILE * fpointm;
@@ -39,7 +38,7 @@ int main()
         if((fpointbr=fopen("Borrow.txt","r")))
             scanningborrow();
         
-        printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Save\n13\n");
+        printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12) Save\n\n13) Exit\n\n");
         do
             scanf("%d",&e);
         while(e>13 || e<0);
@@ -61,7 +60,7 @@ int main()
                 {
                     
                     char bookname[100];
-                    fflush(stdin);
+                    clearinputbuffer();
                     fgets(bookname,100,stdin);
                     
                     Book Searchbook(char * isbn);
@@ -75,7 +74,7 @@ int main()
                     int nc=0,q=0;
                     char IS[14];
                     printf("Enter book's ISBN\n");
-                    fflush(stdin);
+                    clearinputbuffer();
                     fgets(IS,14,stdin);
                     printf("Enter number of copies u wish to add\n");
                     scanf("%d",&nc);
@@ -86,7 +85,7 @@ int main()
                 {
                     char IS1[14];
                     printf("Enter book's ISBN\n");
-                    fflush(stdin);
+                    clearinputbuffer();
                     fgets(IS1,14,stdin);
                     Deletebook(IS1);
                     
@@ -125,6 +124,7 @@ int main()
                 {
                     int id;
                     do{printf("Enter member ID\n");
+                        fflush(stdin);
                         scanf("%d",&id);}
                     while(id<=0 || id>10000 );
                     Removemember(id);
@@ -162,7 +162,7 @@ int main()
                     do{
                         fblock++;
                         printf("Enter the admin password");
-                        fflush(stdin);
+                        clearinputbuffer();
                         fgets(passwordinput,100,stdin);
                         fp=fopen("password.txt","r");
                         fgets(password,100,fp);
@@ -193,7 +193,7 @@ int main()
                 case 13: // Exit
                 {
                     int exitn;
-                    printf(")Save and Exit\nb)Exit without Saving");
+                    printf(")1Save and Exit\n2)Exit without Saving");
                     scanf("%d",&exitn);
                     if(exitn==2)
                         exit(1);
@@ -214,8 +214,10 @@ int main()
             if (f1 != 0)
         printf("Error (does not match) \n");
         printf("Enter the password you want to set for the admin\n");
+            clearinputbuffer();
         fgets(password,100,stdin);
         printf("Re enter the password\n");
+            clearinputbuffer();
         fgets(password1,100,stdin);
         if(strcmp(password,password1)!=0)
             f1=1;
@@ -231,36 +233,43 @@ int main()
     fpointm=fopen("Members.txt","w");
     printf("Please enter the initial number of members\n");
     scanf("%d",&x);
-    fflush(stdin);
+    clearinputbuffer();
     for(i=0;i<x;i++)
     {
         printf("Enter First name\n");
+        clearinputbuffer();
         fgets(members[i].firstname,25,stdin);
         trim(members[i].firstname);
         printf("Enter Last name\n");
+        clearinputbuffer();
         fgets(members[i].lastname,25,stdin);
         trim(members[i].lastname);
         printf("Enter ID\n");
+        clearinputbuffer();
         scanf("%d",&members[i].ID);
         printf("Enter age\n");
         scanf("%d", &members[i].age);
-        fflush(stdin);
+        clearinputbuffer();
         printf("Enter phone number\n");
         fgets(members[i].phonenumber,20,stdin);
         trim(members[i].phonenumber);
         printf("Enter E-Mail\n");
+        clearinputbuffer();
         fgets(members[i].email,100,stdin);
         trim(members[i].email);
         printf("Enter Address with 'enters' between the street, the building and the city\n");
+        clearinputbuffer();
         fgets(members[i].address.building,25,stdin);
         trim(members[i].address.building);
+        clearinputbuffer();
         fgets(members[i].address.street,25,stdin);
         trim(members[i].address.street);
+        clearinputbuffer();
         fgets(members[i].address.city,25,stdin);
         trim(members[i].address.city);
         members[i].visibility=1;
         
-        fprintf(fpointm,"%s,%s,%d,%d,%s,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.building,members[i].address.street,members[i].address.city);
+        fprintf(fpointm,"%s,%s,%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.building,members[i].address.street,members[i].address.city);
         
         fprintf(fpointm,"\n");
         
@@ -271,20 +280,24 @@ int main()
     fpointbk=fopen("Books.txt","w");
     printf("Enter number of Books you want to initialize the library with\n");
     scanf("%d",&y);
-    fflush(stdin);
+    clearinputbuffer();
     for(i=0;i<y;i++)
     {
         printf("Book [%d]",(i+1));
         printf(" Enter Category\n");
+        clearinputbuffer();
         fgets(books[i].category,50,stdin);
         trim(books[i].category);
         printf("Enter Title\n");
+        clearinputbuffer();
         fgets(books[i].title,100,stdin);
         trim(books[i].title);
         printf("Enter ISBN\n");
         fgets(books[i].ISBN,14,stdin);
+        clearinputbuffer();
         trim(books[i].ISBN);
         printf("Enter number of copies\n");
+        clearinputbuffer();
         scanf("%d",&books[i].copies);
         books[i].visibility=1;
         fprintf(fpointbk,"%s,%s,%s,%d,%d",books[i].category,books[i].title,books[i].ISBN,books[i].copies,books[i].visibility);

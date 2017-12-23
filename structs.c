@@ -57,25 +57,33 @@ void Addbook()
             n++;
     }
     printf("Enter title\n");
+    fflush(stdin);
     fgets(books[n].title,100,stdin);
     trim(books[n].title);
-    printf("Specify the author");
+    printf("Specify the author\n");
+    fflush(stdin);
     fgets(books[n].author,100,stdin);
     trim(books[n].author);
-    printf("Specify the publisher");
+    printf("Specify the publisher\n");
+    fflush(stdin);
     fgets(books[n].publisher,100,stdin);
     trim(books[n].publisher);
-    printf("Enter book ISBN");
+    printf("Enter book ISBN\n");
+    fflush(stdin);
     fgets(books[n].ISBN,14,stdin);
     trim(books[n].ISBN);
-    printf("Enter Number of copies");
+    printf("Enter Number of copies\n");
     scanf("%d",&books[n].copies);
     fflush(stdin);
-    printf("Specify Category");
+    printf("Specify Category\n");
+    fflush(stdin);
     fgets(books[n].category,50,stdin);
     printf("Please enter date book was published in form dd/mm/yy");
+    fflush(stdin);
     fgets("%d%d%D",books[n].date.day,stdin);
+    fflush(stdin);
     fgets("%d%d%D",books[n].date.month,stdin);
+    fflush(stdin);
     fgets("%d%d%D",books[n].date.year,stdin);
     books[n].visibility=1;
 
@@ -84,8 +92,8 @@ void Addbook()
 }
 void Memberegister()
 {
-    int i,n = 0;
-    for(i=0;i<10000;i++)
+    int i,n = 0,f;
+    do{  for(i=0;i<10000;i++)
     {
         if(members[i].visibility==0)
         break;
@@ -95,31 +103,39 @@ void Memberegister()
                         printf("Enter First name\n");
                         fgets(members[n].firstname,25,stdin);
                         trim(members[n].firstname);
+    clearinputbuffer();
                         printf("Enter Last name\n");
                         fgets(members[n].lastname,25,stdin);
                         trim(members[n].lastname);
                         printf("Enter ID\n");
                         scanf("%d",&members[n].ID);
-                        printf("Enter age\n");
+    clearinputbuffer();
+    printf("Enter age\n");
                         scanf("%d", &members[n].age);
-                        fflush(stdin);
+    clearinputbuffer();
                         printf("Enter phone number\n");
                         fgets(members[n].phonenumber,20,stdin);
                         trim(members[n].phonenumber);
+    clearinputbuffer();
                         printf("Enter E-Mail\n");
                         fgets(members[n].email,100,stdin);
                         trim(members[n].email);
+    clearinputbuffer();
                         printf("Enter Address with 'enters' between the city, the name and the address\n");
                         fgets(members[n].address.city,25,stdin);
                         trim(members[n].address.city);
+    clearinputbuffer();
                         fgets(members[n].address.street,25,stdin);
                         trim(members[n].address.street);
+    clearinputbuffer();
                         fgets(members[n].address.building,25,stdin);
                         trim(members[n].address.building);
                         members[n].visibility=1;
-                      //  fp=fopen("members.txt","a");
-                        //fprintf(fp,"%s-%s-%d-%d-%s-%s-%s-%s-%s",members[n+1].firstname,members[n+1].lastname,members[n+1].age,members[n+1].ID,members[n+1].phonenumber,members[n+1].email,members[n+1].address.city,members[n+1].address.street,members[n+1].address.street);
-
+    
+    printf("To stop adding members enter 0");
+    scanf("%d",&f);
+    }
+    while(f!=0);
 
 
 }
@@ -144,7 +160,7 @@ void Deletebook(char * isbn)//Done
 
     }
     if(i==1000)
-    printf("Wrong ISBN");
+    printf("Wrong ISBN\n");
 else
     books[i].visibility=0;
 
@@ -366,7 +382,7 @@ void Removemember(int ID)
 
     }
     if(i==1000)
-    printf("Invalid ID");
+    printf("Invalid ID\n");
 else
     members[i].visibility=0;
 }
@@ -488,7 +504,11 @@ void scanningborrow(void){
     fclose(fpointbr);
 }
 
-
+void clearinputbuffer(void){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+    
+}
 
 
 
