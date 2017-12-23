@@ -29,11 +29,21 @@ int Comparedate(Date date1, Date date2 ) // Date 1 is the current date, date 2 i
         return 0;
 }// 1= not due
 // 0= over due
-void Addcopy(Book book1, int nc)
+void Addcopy(char * isbn, int nc)
 {
-    int a;
-    a=nc+book1.copies;
-    book1.copies = a;
+    int i;
+    for(i=0;i<1000;i++)
+    {
+        if(strcmp(books[i].ISBN,isbn)==0)
+        {
+            books[i].copies=books[i].copies+nc;
+            break;
+        }
+
+    }
+    if(i==1000)
+    printf("Wrong ISBN");
+
 }
 void Addbook()
 {
@@ -125,7 +135,7 @@ void Memberegister()
 void Deletebook(char * isbn)//Done
 {
     int i;
-    for(i=0;i<10000;i++)
+    for(i=0;i<1000;i++)
     {
         if(strcmp(books[i].ISBN,isbn)==0)
         {
@@ -133,13 +143,19 @@ void Deletebook(char * isbn)//Done
         }
 
     }
+    if(i==1000)
+    printf("Wrong ISBN");
+else
     books[i].visibility=0;
+
 }
 Book Searchbook1(char * isbn)
 {
-    int f,j;
+    int j;
+    Book b;
+    b.copies=0;
 
-    for(j=0;j<n;j++)
+    for(j=0;j<1000;j++)
     {
         if(strcmp(isbn,books[j].ISBN)==0)
         {
@@ -149,38 +165,42 @@ Book Searchbook1(char * isbn)
 
 
     }
-    if (j==n)
-        return 0;
+    if (j==1000)
+        return b;
     else
     return books[j];
 }
 Book Searchbook2(char * title)
 {
     int i; // variable f??
+     Book b;
+    b.copies=0;
 
-    for(i=0;i<10000;i++)
+    for(i=0;i<1000;i++)
     {
 
         if(strcmp(title,books[i].title)==0)
             break;
  }
-  if (j==n)
-        return 0;
+  if (j==1000)
+        return b;
     else
         return books[i];
 }
 Book Searchbook3(char * author)
 {
     int i;
+     Book b;
+    b.copies=0;
 
-    for(i=0;i<10000;i++)
+    for(i=0;i<1000;i++)
     {
 
         if(strcmp(author,books[i].author)==0)
             break;
     }
-     if (j==n)
-        return 0;
+     if (j==1000)
+        return b;
     else
         return books[i];
 }
@@ -303,9 +323,15 @@ void Mostpopular(Book book[])
     }
     printf("Top 5 Most Popular Books are :/n1)%s/n2)%s/n3)%s/n4)%s/n5)%s",books[m1].title,books[m2].title,books[m3].title,books[m4].title,books[m5].title);
 }
-void Bookreturn(Borrowing borrowing)
+void Bookreturn(int StID,char * isbn)
 {
-    borrowing.member.ID=0;
-    borrowing.visibility=0;
+
+    int i,j ;
+    for (i=0;i<1000;i++)
+    {
+        if (borrowing.member.ID==StID)
+            break;
+    }
+
 
 }

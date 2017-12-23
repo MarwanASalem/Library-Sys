@@ -29,8 +29,13 @@ int main()
     //y is the number of books desired to initialize
     //e variable to hold the number to the function to execute.
     FILE * fp;
+    FILE * fpoint;
+    FILE * fpoint1;
     if((fp=fopen("members.txt","r")))// to show the startup menu anytime but the first time.
     {
+        fpoint=fopen("Books.txt","a");
+        fpoint1=fopen("members.txt","a");
+
         printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Exit\n\n");
         do
             scanf("%d",&e);
@@ -45,6 +50,7 @@ int main()
             }
             case 2 ://ADD A BOOK
                 {
+                    Addbook();
 
                     break;
                 }
@@ -62,16 +68,25 @@ int main()
                 }
             case 4 ://ADD COPY
                 {
+                    Book b;
+                    int nc=0,q=0;
                     char IS[14];
-                    printf("Enter book's ISBN");
+                    printf("Enter book's ISBN\n");
                     fflush(stdin);
                     fgets(IS,14,stdin);
-                    Searchbook1(IS);
-
+                    printf("Enter number of copies u wish to add\n");
+                    scanf("%d",&nc);
+                    Addcopy(IS,nc);
+                    printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Exit\n\n");
                     break;
                 }
-            case 5 :// DELETE BOOK
+            case 5 :// DELETE BOOK//done
                 {
+                    char IS1[14];
+                    printf("Enter book's ISBN\n");
+                    fflush(stdin);
+                    fgets(IS1,14,stdin);
+                    Deletebook(IS1);
 
                     break;
                 }
@@ -81,13 +96,22 @@ int main()
 
                     break;
                 }
-            case 7 ://MEMBER BORROW
+            case 7 ://MEMBER BORROW// add current time to the fn.
                 {
 
                     break;
                 }
             case 8 ://RETURN BOOK
                 {
+                    char IS2[14];
+                    printf("Enter book's ISBN\n");
+                    fflush(stdin);
+                    fgets(IS2,14,stdin);
+                    int stid;
+                    do{printf("Enter member ID\n");
+                    scanf("%d",&stid);}
+                    while(stid<=0 || stid>10000 );
+
 
                     break;
                 }
@@ -116,12 +140,31 @@ int main()
 
                         }
                         while (f2!=0 && fblock<5);
+                        fblock=0;
+
                     break;
                 }
             case 11 ://MOST POP
                 {
-                    printf("Enter the admin password");
 
+                    do{
+                            fblock++;
+                        printf("Enter the admin password");
+                        fflush(stdin);
+                        fgets(passwordinput,100,stdin);
+                        fp=fopen("password.txt","r");
+                        fgets(password,100,fp);
+                        if (strcmp(password,passwordinput)!= 0)
+                            f2=1;
+                        else
+                            f2=0;
+                        if (fblock>4)
+                            {
+                                exit(1);
+                            }
+
+                        }
+                        while (f2!=0 && fblock<5);
                     break;
                 }
         case 12 :
@@ -183,8 +226,9 @@ int main()
                         trim(members[i].address.street);
                         fgets(members[i].address.building,25,stdin);
                         trim(members[i].address.building);
+                        members[i].visibility=1
 
-                    fprintf(fp,"%s,%s,%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street);
+                    fprintf(fp,"%s,%s,%d,%d,%s,%s,%s,%s,%s,%d",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.city,members[i].address.street,members[i].address.street,members[i].visibility);
 
                     fprintf(fp,"\n");
 

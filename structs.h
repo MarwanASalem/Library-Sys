@@ -58,12 +58,12 @@ typedef struct{
 int Comparedate(Date date1, Date date2);//Done
 void Addbook(void); // Done
 Book Searchbook1(char * isbn); //Done
-void Addcopy(Book book,int nc);//done
+void Addcopy(char * isbn, int nc);//done
 void Deletebook(char * isbn);//done
 void Memberegister(int ID, char * isbn);//done
 void Memberborrow(int StID,char * isbn);//lesa
-void Bookreturn(Borrowing book[]);//lesa
-void Removemember(Member member);//Done
+void Bookreturn(int StID,char * isbn);//Done
+void Removemember(int ID);//Done
 void Overduebooks(void);//Done
 void Mostpopular(Book book[]);//lesa
 Book Searchbook2(char * title);
