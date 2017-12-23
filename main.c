@@ -26,22 +26,23 @@ int main()
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
 
-    int i,x=0,y=0,j,f=0,e;//x is the number of members desired to initialize.
+    int i,x=0,y=0,f=0,e;//x is the number of members desired to initialize.
     //f is the flag needed for the error handling and
     //y is the number of books desired to initialize
     //e variable to hold the number to the function to execute.
 
-    if((fp=fopen("members.txt","r")))// to show the startup menu anytime but the first time.
+    if((fpointm=fopen("Members.txt","r")))// to show the startup menu anytime but the first time.
     {
-        scanningmembers;
-        scanningbooks;
-        scanningborrow;
+        scanningmembers();
+        scanningbooks();
+        if((fpointbr=fopen("Borrow.txt","r")))
+        scanningborrow();
 
         printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12)Save\n13\n");
         do
             scanf("%d",&e);
-        while(e>12 || e<0);
-        switch(e)
+        while(e>13 || e<0);
+        do{ switch(e)
         {
             case 1 ://check date
             {
@@ -202,7 +203,8 @@ int main()
             break;
         }
                 
-         }
+        }}
+        while(flag==1);
         {
 
     do {

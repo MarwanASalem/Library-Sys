@@ -420,7 +420,7 @@ void savingbooks(void){
 }
 void savingborrow(void){
     
-    fpointbr=fopen("Borrowing.txt","w");
+    fpointbr=fopen("Borrow.txt","w");
     int k;
     for(k=0;k<10000;k++){
         if(borrowing[k].visibility==1){
