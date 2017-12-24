@@ -51,42 +51,34 @@ void Addbook()
 
     for(i=0;i<10000;i++)
     {
-        if(members[i].visibility==0)
+        if(books[i].visibility==0)
         break;
         else
             n++;
     }
+    books[n].visibility=1;
     printf("Enter title\n");
-    fflush(stdin);
     fgets(books[n].title,100,stdin);
     trim(books[n].title);
     printf("Specify the author\n");
-    fflush(stdin);
     fgets(books[n].author,100,stdin);
     trim(books[n].author);
     printf("Specify the publisher\n");
-    fflush(stdin);
     fgets(books[n].publisher,100,stdin);
     trim(books[n].publisher);
     printf("Enter book ISBN\n");
-    fflush(stdin);
     fgets(books[n].ISBN,14,stdin);
     trim(books[n].ISBN);
     printf("Enter Number of copies\n");
     scanf("%d",&books[n].copies);
-    fflush(stdin);
+    clearinputbuffer();
     printf("Specify Category\n");
-    fflush(stdin);
     fgets(books[n].category,50,stdin);
     trim(books[n].category);
-    printf("Please enter date book was published in form dd/mm/yy");
-    fflush(stdin);
-    fgets("%d%d%D",books[n].date.day,stdin);
-    fflush(stdin);
-    fgets("%d%d%D",books[n].date.month,stdin);
-    fflush(stdin);
-    fgets("%d%d%D",books[n].date.year,stdin);
-    books[n].visibility=1;
+    printf("Please enter date book was published in form dd/mm/yyyy\n");
+    scanf("%d",&books[n].date.day);
+    scanf("%d",&books[n].date.month);
+    scanf("%d",&books[n].date.year);
 
 
 
@@ -140,17 +132,19 @@ void Memberegister()
 
 void Deletebook(char * isbn)//Done
 {
-    int i;
-    for(i=0;i<1000;i++)
+    int i,b;
+    for(i=0;i<10000;i++)
     {
-        if(strcmp(books[i].ISBN,isbn)==0)
-        {
-            break;
-        }
+        b=strcmp(books[i].ISBN,isbn);
+        if(b == 0)
+            {
 
+                break;
+
+            }
     }
-    if(i==1000)
-    printf("Wrong ISBN\n");
+if(i==10000)
+        printf("Wrong ISBN\n");
 else
     books[i].visibility=0;
 

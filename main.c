@@ -51,7 +51,7 @@ int main()
 
                     break;
                 }
-                case 2 ://ADD A BOOK
+                case 2 ://Up and running
                 {
                     clearinputbuffer();
                     Addbook();
@@ -86,9 +86,11 @@ int main()
                 case 5 :// DELETE BOOK//done
                 {
                     char IS1[14];
+                    printf("%s\n\n",books[0].ISBN);
                     printf("Enter book's ISBN\n");
                     clearinputbuffer();
                     fgets(IS1,14,stdin);
+                    trim(IS1);
                     Deletebook(IS1);
 
                     break;
