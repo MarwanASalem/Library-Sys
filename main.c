@@ -48,7 +48,14 @@ int main()
             {
                 case 1 ://check date
                 {
-
+                    Date datecmp;
+                    
+                    time_t t = time(NULL);
+                    struct tm *tm = localtime(&t);
+                    datecmp.year=tm->tm_year;
+                    datecmp.month=tm->tm_mon;
+                    datecmp.day=tm->tm_mday;
+                    printf("%d-%d-%d",datecmp.day,datecmp.month,datecmp.year);
                     break;
                 }
                 case 2 ://Up and running
