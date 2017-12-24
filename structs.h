@@ -65,7 +65,7 @@ void Memberborrow(int StID,char * isbn);//lesa
 void Bookreturn(int StID,char * isbn);//Done
 void Removemember(int ID);//Done
 void Overduebooks(void);//Done
-void Mostpopular(Book book[]);//lesa
+void Mostpopular();//lesa
 Book Searchbook2(char * title);
 Book Searchbook3(char * author);
 void scanningmembers(void);

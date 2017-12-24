@@ -78,6 +78,7 @@ void Addbook()
     printf("Specify Category\n");
     fflush(stdin);
     fgets(books[n].category,50,stdin);
+    trim(books[n].category);
     printf("Please enter date book was published in form dd/mm/yy");
     fflush(stdin);
     fgets("%d%d%D",books[n].date.day,stdin);
@@ -93,7 +94,7 @@ void Addbook()
 void Memberegister()
 {
     int i,n = 0,f;
-    do{  for(i=0;i<10000;i++)
+    for(i=0;i<10000;i++)
     {
         if(members[i].visibility==0)
         break;
@@ -103,39 +104,28 @@ void Memberegister()
                         printf("Enter First name\n");
                         fgets(members[n].firstname,25,stdin);
                         trim(members[n].firstname);
-    clearinputbuffer();
                         printf("Enter Last name\n");
                         fgets(members[n].lastname,25,stdin);
                         trim(members[n].lastname);
                         printf("Enter ID\n");
                         scanf("%d",&members[n].ID);
-    clearinputbuffer();
-    printf("Enter age\n");
+                        printf("Enter age\n");
                         scanf("%d", &members[n].age);
-    clearinputbuffer();
+                        clearinputbuffer();
                         printf("Enter phone number\n");
                         fgets(members[n].phonenumber,20,stdin);
                         trim(members[n].phonenumber);
-    clearinputbuffer();
                         printf("Enter E-Mail\n");
                         fgets(members[n].email,100,stdin);
                         trim(members[n].email);
-    clearinputbuffer();
                         printf("Enter Address with 'enters' between the city, the name and the address\n");
                         fgets(members[n].address.city,25,stdin);
                         trim(members[n].address.city);
-    clearinputbuffer();
                         fgets(members[n].address.street,25,stdin);
                         trim(members[n].address.street);
-    clearinputbuffer();
                         fgets(members[n].address.building,25,stdin);
                         trim(members[n].address.building);
                         members[n].visibility=1;
-    
-    printf("To stop adding members enter 0");
-    scanf("%d",&f);
-    }
-    while(f!=0);
 
 
 }
@@ -268,7 +258,7 @@ void Memberborrow(int StID,char * isbn)//Add Due Date!!!!!!!!!
             {
                 f=1;
                 break;
-                
+
 }
             strcpy(borrowing[n].book.ISBN,isbn);
             books[i].copiesborrowed++;
@@ -284,7 +274,7 @@ void Memberborrow(int StID,char * isbn)//Add Due Date!!!!!!!!!
             break;
         }
 
-        
+
     }
     if(f==0)
         borrowing[n].visibility=1;
@@ -292,7 +282,7 @@ void Memberborrow(int StID,char * isbn)//Add Due Date!!!!!!!!!
 
 
 }
-void Mostpopular(Book book[])
+void Mostpopular()
 {
     int i,max=0,m1= 0,m2= 0,m3= 0,m4= 0,m5 = 0;
     for (i=0;i<10000;i++)
@@ -388,11 +378,11 @@ else
 }
 
 void savingmembers(void){
-    
+
     fpointm=fopen("Members.txt","w");
     int i;
     for(i=0;i<10000;i++){
-        
+
         if(members[i].visibility==1) {
             fprintf(fpointm,"%s,",members[i].firstname);
             fprintf(fpointm,"%s,",members[i].lastname);
@@ -403,16 +393,17 @@ void savingmembers(void){
             fprintf(fpointm,"%s,",members[i].phonenumber);
             fprintf(fpointm,"%d,",members[i].age);
             fprintf(fpointm,"%s,",members[i].email);
+            fprintf(fpointm,"%d,",members[i].visibility);
             fprintf(fpointm,"\n");
         }
         else  continue;
-        
+
     }
     fclose(fpointm);
 }
 
 void savingbooks(void){
-    
+
     fpointbk=fopen("Books.txt","w");
     int j;
     for(j=0;j<10000;j++){
@@ -427,15 +418,16 @@ void savingbooks(void){
             fprintf(fpointbk,"%d,",books[j].date.day);
             fprintf(fpointbk,"%d,",books[j].date.month);
             fprintf(fpointbk,"%d,",books[j].date.year);
+            fprintf(fpointbk,"%d,",books[j].visibility);
             fprintf(fpointbk,"\n");
         }
-        
+
         else  continue;
     }
     fclose(fpointbk);
 }
 void savingborrow(void){
-    
+
     fpointbr=fopen("Borrow.txt","w");
     int k;
     for(k=0;k<10000;k++){
@@ -445,6 +437,7 @@ void savingborrow(void){
             fprintf(fpointbr,"%d,",borrowing[k].date.day);
             fprintf(fpointbr,"%d,",borrowing[k].date.month);
             fprintf(fpointbr,"%d,",borrowing[k].date.year);
+            fprintf(fpointbr,"%d,",borrowing[k].visibility);
             fprintf(fpointbr,"\n");
         }
         else continue;
@@ -465,8 +458,10 @@ void scanningmembers(void){
             fscanf(fpointm,"%[^,],",members[i].phonenumber);
             fscanf(fpointm,"%d,",&members[i].age);
             fscanf(fpointm,"%[^,],",members[i].email);
+            fscanf(fpointm,"%d,",&members[i].visibility);
+            i++;
 }
-        
+
     }
     fclose(fpointm);
 }
@@ -485,6 +480,8 @@ void scanningbooks(void){
             fscanf(fpointbk,"%d,",&books[i].date.day);
             fscanf(fpointbk,"%d,",&books[i].date.month);
             fscanf(fpointbk,"%d,",&books[i].date.year);
+            fscanf(fpointbk,"%d,",&books[i].visibility);
+            i++;
         }
     }
     fclose(fpointbk);
@@ -499,6 +496,8 @@ void scanningborrow(void){
             fscanf(fpointbr,"%d,",&borrowing[i].date.day);
             fscanf(fpointbr,"%d,",&borrowing[i].date.month);
             fscanf(fpointbr,"%d,",&borrowing[i].date.year);
+            fscanf(fpointbr,"%d,",&borrowing[i].visibility);
+        i++;
         }
     }
     fclose(fpointbr);
@@ -507,7 +506,7 @@ void scanningborrow(void){
 void clearinputbuffer(void){
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
-    
+
 }
 
 

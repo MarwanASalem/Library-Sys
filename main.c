@@ -11,6 +11,7 @@
 #include <time.h>
 #include <string.h>
 #include "structs.h"
+#include "structs.c"
 
 FILE * fp;
 FILE * fpointm;
@@ -24,48 +25,49 @@ int main()
     int flag=1, f1=0,f2,fblock=0; //f1 flag for password verification.
     //f2 to check the password when entered.
     char password[100],password1[100],passwordinput[100];
-    
+
     int i,x=0,y=0,f=0,e;//x is the number of members desired to initialize.
     //f is the flag needed for the error handling and
     //y is the number of books desired to initialize
     //e variable to hold the number to the function to execute.
-    
+
     if((fpointm=fopen("Members.txt","r")))// to show the startup menu anytime but the first time.4
-        
+
     {
         scanningmembers();
         scanningbooks();
         if((fpointbr=fopen("Borrow.txt","r")))
             scanningborrow();
-        
+        printf("%s",members[0].firstname);
         printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12) Save\n\n13) Exit\n\n");
-        do
+        do {
             scanf("%d",&e);
         while(e>13 || e<0);
-        
-        do { switch(e)
+
+            switch(e)
             {
                 case 1 ://check date
                 {
-                    
+
                     break;
                 }
                 case 2 ://ADD A BOOK
                 {
+                    clearinputbuffer();
                     Addbook();
-                    
+
                     break;
                 }
                 case 3 :// SEARCH FOR S BOOK
                 {
-                    
+
                     char bookname[100];
                     clearinputbuffer();
                     fgets(bookname,100,stdin);
-                    
+
                     Book Searchbook(char * isbn);
-                    
-                    
+
+
                     break;
                 }
                 case 4 ://ADD COPY
@@ -88,11 +90,12 @@ int main()
                     clearinputbuffer();
                     fgets(IS1,14,stdin);
                     Deletebook(IS1);
-                    
+
                     break;
                 }
-                case 6 ://MEMBER REGISTER//done
+                case 6 ://Up andRunning
                 {
+                    clearinputbuffer();
                     Memberegister();
                     break;
                 }
@@ -116,19 +119,18 @@ int main()
                         scanf("%d",&stid);}
                     while(stid<=0 || stid>10000 );
                     Bookreturn(stid,IS2);
-                    
-                    
+
+
                     break;
                 }
-                case 9 ://REMOVE MEMBER//done
+                case 9 ://up and running
                 {
                     int id;
-                    do{printf("Enter member ID\n");
+                    printf("Enter member ID\n");
                         fflush(stdin);
-                        scanf("%d",&id);}
-                    while(id<=0 || id>10000 );
+                        scanf("%d",&id);
                     Removemember(id);
-                    
+
                     break;
                 }
                 case 10 ://OVERDUE BOOKS//done
@@ -148,17 +150,17 @@ int main()
                         {
                             exit(1);
                         }
-                        
+
                     }
                     while (f2!=0 && fblock<5);
                     fblock=0;
                     Overduebooks();
-                    
+
                     break;
                 }
                 case 11 ://MOST POP//done
                 {
-                    
+
                     do{
                         fblock++;
                         printf("Enter the admin password");
@@ -174,7 +176,7 @@ int main()
                         {
                             exit(1);
                         }
-                        
+
                     }
                     while (f2!=0 && fblock<5);
                     fblock=0;
@@ -186,10 +188,10 @@ int main()
                     savingmembers();
                     savingbooks();
                     savingborrow();
-                    
+
                     break;
                 }
-                    
+
                 case 13: // Exit
                 {
                     int exitn;
@@ -204,20 +206,21 @@ int main()
                     }
                     break;
                 }
-                    
-            }}
+
+            }
+            printf("Enter Function Index to execute:\n\n1)  Check Date\n\n2)  Add Book\n\n3)  Search For A Book\n\n4)  Add Copy\n\n5)  Delete Book\n\n6)  Member Register\n\n7)  Member Borrowing\n\n8)  Returning Book\n\n9)  Remove Member\n\n10) Overdue Books\n\n11) Most Popular Books\n\n12) Save\n\n13) Exit\n\n");
+            }
+
         while(flag==1);
     }
-    
+
         else {
         do{
             if (f1 != 0)
         printf("Error (does not match) \n");
         printf("Enter the password you want to set for the admin\n");
-            clearinputbuffer();
         fgets(password,100,stdin);
         printf("Re enter the password\n");
-            clearinputbuffer();
         fgets(password1,100,stdin);
         if(strcmp(password,password1)!=0)
             f1=1;
@@ -225,11 +228,11 @@ int main()
             f1=0;
     }
     while(f1!=0);
-    
+
     fp=fopen("password.txt","w");
     fprintf(fp,"%s",password);
     fclose(fp);
-    
+
     fpointm=fopen("Members.txt","w");
     printf("Please enter the initial number of members\n");
     scanf("%d",&x);
@@ -237,15 +240,12 @@ int main()
     for(i=0;i<x;i++)
     {
         printf("Enter First name\n");
-        clearinputbuffer();
         fgets(members[i].firstname,25,stdin);
         trim(members[i].firstname);
         printf("Enter Last name\n");
-        clearinputbuffer();
         fgets(members[i].lastname,25,stdin);
         trim(members[i].lastname);
         printf("Enter ID\n");
-        clearinputbuffer();
         scanf("%d",&members[i].ID);
         printf("Enter age\n");
         scanf("%d", &members[i].age);
@@ -254,27 +254,23 @@ int main()
         fgets(members[i].phonenumber,20,stdin);
         trim(members[i].phonenumber);
         printf("Enter E-Mail\n");
-        clearinputbuffer();
         fgets(members[i].email,100,stdin);
         trim(members[i].email);
         printf("Enter Address with 'enters' between the street, the building and the city\n");
-        clearinputbuffer();
         fgets(members[i].address.building,25,stdin);
         trim(members[i].address.building);
-        clearinputbuffer();
         fgets(members[i].address.street,25,stdin);
         trim(members[i].address.street);
-        clearinputbuffer();
         fgets(members[i].address.city,25,stdin);
         trim(members[i].address.city);
         members[i].visibility=1;
-        
+
         fprintf(fpointm,"%s,%s,%d,%d,%s,%s,%s,%s,%s",members[i].firstname,members[i].lastname,members[i].age,members[i].ID,members[i].phonenumber,members[i].email,members[i].address.building,members[i].address.street,members[i].address.city);
-        
+
         fprintf(fpointm,"\n");
-        
-        
-        
+
+
+
     }
     fclose(fpointm);
     fpointbk=fopen("Books.txt","w");
@@ -285,26 +281,22 @@ int main()
     {
         printf("Book [%d]",(i+1));
         printf(" Enter Category\n");
-        clearinputbuffer();
         fgets(books[i].category,50,stdin);
         trim(books[i].category);
         printf("Enter Title\n");
-        clearinputbuffer();
         fgets(books[i].title,100,stdin);
         trim(books[i].title);
         printf("Enter ISBN\n");
         fgets(books[i].ISBN,14,stdin);
-        clearinputbuffer();
         trim(books[i].ISBN);
         printf("Enter number of copies\n");
-        clearinputbuffer();
         scanf("%d",&books[i].copies);
         books[i].visibility=1;
         fprintf(fpointbk,"%s,%s,%s,%d,%d",books[i].category,books[i].title,books[i].ISBN,books[i].copies,books[i].visibility);
     }
     printf("Please restart the program\n");
     fclose(fpointbk);
-    
-    
+
+
     return 0;
         }}
