@@ -1,0 +1,17 @@
+User manual :
+•	To check today’s date enter  “1”
+•	To add a new book enter  “2” , and then enter the book’s information in the order requested
+•	To search for a book using the book’s unique ISBN number enter  “3” ,and then enter (1), and then enter the book’s unique ISBN number
+•	To search for a book using the book’s title enter  “3” ,and then enter (2), and then enter the book’s title
+•	To search for a book using the book’s author enter  “3” ,and then enter (3), and then enter the book’s author
+•	To add new copies for an existing book enter “4” , and then enter the book’s unique ISBN number and the number of new copies you wish to add
+•	To delete a book enter “5” , and then enter the book’s unique ISBN number
+•	To register a new member enter “6” , and then enter the member’s information in the order requested
+•	To borrow a book (as an already registered member) enter  “7” , and then enter the member’s unique ID number and the book’s unique ISBN number
+•	 To return a book you have previously borrowed enter “8” , and then enter the book’s unique ISBN number and the member’s unique ID number
+•	To remove a registered member enter “9” , and then enter the member’s unique ID number
+•	To see a list of overdue books and the ID of the members who borrowed them (only for admin to use ) enter “10” , and then enter and confirm your admin password
+•	To see a list of the top 5 most popular (borrowed) books (only for admin to use) enter “11” , and then enter and confirm your admin password
+•	To save all data enter “12”
+•	To save and exit enter “13” , and then enter “1”
+•	To exit without saving enter “13” , and then enter “2”
